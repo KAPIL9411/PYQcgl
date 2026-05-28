@@ -21,6 +21,7 @@
         </div>
         <nav class="topnav" aria-label="Primary">
           <a class="topnav__link" href="#/home">Home</a>
+          <a class="topnav__link" href="#/custom">Custom Mock</a>
           <a class="topnav__link" href="#/practice?chapter=percentage">Open Practice</a>
         </nav>
       </div>
@@ -38,6 +39,69 @@
             <div class="panel__meta">Select a chapter to start</div>
           </div>
           <div class="chapters" id="chapterGrid"></div>
+        </div>
+      </section>
+
+      <section class="view" data-view="custom" aria-label="Custom Mock" hidden>
+        <div class="pagehead">
+          <h1 class="pagehead__title">Custom Mock</h1>
+          <div class="pagehead__meta">Create a mock by choosing chapters, question count, and time.</div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head">
+            <div class="panel__title">Mock Settings</div>
+            <div class="panel__meta">Chapterwise or Mixed</div>
+          </div>
+
+          <div class="form" id="customForm">
+            <div class="form__row">
+              <div class="form__label">Mock type</div>
+              <div class="form__controls">
+                <label class="radio">
+                  <input type="radio" name="mockType" value="chapter" checked />
+                  <span>Chapterwise</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" name="mockType" value="mixed" />
+                  <span>Mixed chapters</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form__row" id="chapterwiseRow">
+              <div class="form__label">Chapter</div>
+              <div class="form__controls">
+                <select class="select" id="customChapterSelect"></select>
+              </div>
+            </div>
+
+            <div class="form__row" id="mixedRow" hidden>
+              <div class="form__label">Chapters</div>
+              <div class="form__controls">
+                <div class="checks" id="customChaptersChecks"></div>
+                <div class="hint">Select 2+ chapters for mixed mocks.</div>
+              </div>
+            </div>
+
+            <div class="form__grid">
+              <div class="form__field">
+                <label class="form__label2" for="customQCount">Number of questions</label>
+                <input class="input" id="customQCount" type="number" min="1" step="1" value="25" />
+              </div>
+              <div class="form__field">
+                <label class="form__label2" for="customMinutes">Time (minutes)</label>
+                <input class="input" id="customMinutes" type="number" min="1" step="1" value="15" />
+              </div>
+            </div>
+
+            <div class="form__actions">
+              <a class="link" href="#/home">Back</a>
+              <div class="grow"></div>
+              <div class="muted" id="customMsg"></div>
+              <button class="btn btn--primary" id="customStartBtn" type="button">Start Mock</button>
+            </div>
+          </div>
         </div>
       </section>
 

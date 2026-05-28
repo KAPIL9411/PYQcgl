@@ -18,12 +18,24 @@ const appState = {
   lastTickAt: 0,
   timerId: null,
   autoNextId: null,
+  timeLimitMs: null,
+  // For mixed/custom mocks we may run against a synthetic chapter not stored in CHAPTERS.
+  sessionChapter: null,
 };
 
 const el = {
   views: Array.from(document.querySelectorAll("[data-view]")),
   chapterGrid: document.getElementById("chapterGrid"),
   homeMeta: document.getElementById("homeMeta"),
+  customForm: document.getElementById("customForm"),
+  customMsg: document.getElementById("customMsg"),
+  customStartBtn: document.getElementById("customStartBtn"),
+  customChapterSelect: document.getElementById("customChapterSelect"),
+  customChaptersChecks: document.getElementById("customChaptersChecks"),
+  customQCount: document.getElementById("customQCount"),
+  customMinutes: document.getElementById("customMinutes"),
+  chapterwiseRow: document.getElementById("chapterwiseRow"),
+  mixedRow: document.getElementById("mixedRow"),
   chapterImportTitle: document.getElementById("chapterImportTitle"),
   chapterImportId: document.getElementById("chapterImportId"),
   chapterImportDesc: document.getElementById("chapterImportDesc"),
@@ -61,6 +73,14 @@ const el = {
   reviewBtn: document.getElementById("reviewBtn"),
   retryWrongBtn: document.getElementById("retryWrongBtn"),
 };
+
+function setCustomMessage(text, kind) {
+  if (!el.customMsg) return;
+  el.customMsg.textContent = text || "";
+  if (kind === "ok") el.customMsg.style.color = "var(--good)";
+  else if (kind === "bad") el.customMsg.style.color = "var(--danger)";
+  else el.customMsg.style.color = "var(--muted)";
+}
 
 function fullscreenSupported() {
   const el = document.documentElement;
@@ -109,6 +129,7 @@ function syncFullscreenUi() {
 }
 
 function chapterById(id) {
+  if (appState.sessionChapter && appState.sessionChapter.id === id) return appState.sessionChapter;
   return CHAPTERS.find((c) => c.id === id) || null;
 }
 
@@ -117,6 +138,44 @@ function formatDuration(ms) {
   const m = Math.floor(s / 60);
   const r = s % 60;
   return `${m}:${String(r).padStart(2, "0")}`;
+}
+
+function shuffledCopy(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function clampInt(value, fallback, min, max) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return fallback;
+  const i = Math.floor(n);
+  return Math.min(max, Math.max(min, i));
+}
+
+function buildMixedChapter(selectedChapterIds) {
+  const ids = Array.isArray(selectedChapterIds) ? selectedChapterIds : [];
+  const chapters = ids.map((id) => chapterById(id)).filter(Boolean);
+  const questions = [];
+  for (const c of chapters) {
+    for (const q of c.questions) {
+      questions.push({
+        ...q,
+        // keep an origin marker (useful later for analytics/UI if needed)
+        _chapterId: c.id,
+        _chapterTitle: c.title,
+      });
+    }
+  }
+  return {
+    id: "mixed",
+    title: "Mixed Mock",
+    desc: `Mixed mock from ${chapters.length} chapter(s).`,
+    questions,
+  };
 }
 
 function storageKey(kind, chapterId) {
@@ -290,6 +349,10 @@ function makeNewSession(chapterId, order, mode) {
   const total = chapter ? order.length : 0;
   appState.chapterId = chapterId;
   appState.mode = mode;
+  if (mode !== "custom") {
+    appState.timeLimitMs = null;
+    appState.sessionChapter = null;
+  }
   appState.order = order.slice();
   appState.idx = 0;
   appState.answers = Array.from({ length: total }).map(() => ({
@@ -315,7 +378,17 @@ function startTimer() {
     appState.elapsedMs += Math.max(0, now - appState.lastTickAt);
     appState.lastTickAt = now;
     if (appState.view === "practice") {
-      el.qTimer.textContent = `Time ${formatDuration(appState.elapsedMs)}`;
+      if (appState.timeLimitMs && Number.isFinite(appState.timeLimitMs)) {
+        const left = Math.max(0, appState.timeLimitMs - appState.elapsedMs);
+        el.qTimer.textContent = `Left ${formatDuration(left)}`;
+        if (left <= 0) {
+          // Auto-submit when time is over.
+          finishSession();
+          return;
+        }
+      } else {
+        el.qTimer.textContent = `Time ${formatDuration(appState.elapsedMs)}`;
+      }
     }
     if (appState.view === "results") {
       el.timeValue.textContent = formatDuration(appState.elapsedMs);
@@ -346,6 +419,100 @@ function homeStatsText() {
   const totalQ = CHAPTERS.reduce((a, c) => a + c.questions.length, 0);
   const bestCount = CHAPTERS.filter((c) => !!readJson(storageKey("best", c.id), null)).length;
   return `${CHAPTERS.length} chapter • ${totalQ} questions • ${bestCount} attempted`;
+}
+
+function renderCustom() {
+  setView("custom");
+  setCustomMessage("", "muted");
+  refreshChapters();
+
+  if (el.customChapterSelect) {
+    el.customChapterSelect.innerHTML = "";
+    for (const c of CHAPTERS) {
+      const opt = document.createElement("option");
+      opt.value = c.id;
+      opt.textContent = `${c.title} (${c.questions.length} Q)`;
+      el.customChapterSelect.appendChild(opt);
+    }
+  }
+
+  if (el.customChaptersChecks) {
+    el.customChaptersChecks.innerHTML = "";
+    for (const c of CHAPTERS) {
+      const label = document.createElement("label");
+      label.className = "check";
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.value = c.id;
+      label.appendChild(input);
+      const span = document.createElement("span");
+      span.textContent = `${c.title}`;
+      label.appendChild(span);
+      el.customChaptersChecks.appendChild(label);
+    }
+  }
+
+  syncCustomTypeUi();
+}
+
+function currentMockType() {
+  if (!el.customForm) return "chapter";
+  const r = el.customForm.querySelector('input[name="mockType"]:checked');
+  return r && r.value === "mixed" ? "mixed" : "chapter";
+}
+
+function syncCustomTypeUi() {
+  const t = currentMockType();
+  if (el.chapterwiseRow) el.chapterwiseRow.hidden = t !== "chapter";
+  if (el.mixedRow) el.mixedRow.hidden = t !== "mixed";
+}
+
+function startCustomMock() {
+  setCustomMessage("", "muted");
+  refreshChapters();
+
+  const type = currentMockType();
+  const qCount = clampInt(el.customQCount?.value, 25, 1, 1000);
+  const minutes = clampInt(el.customMinutes?.value, 15, 1, 10000);
+
+  if (type === "chapter") {
+    const chapterId = el.customChapterSelect?.value || (CHAPTERS[0] ? CHAPTERS[0].id : "percentage");
+    const chapter = chapterById(chapterId);
+    if (!chapter) {
+      setCustomMessage("Select a valid chapter.", "bad");
+      return;
+    }
+    const maxQ = chapter.questions.length;
+    const n = Math.min(qCount, maxQ);
+    const indices = shuffledCopy(chapter.questions.map((_, i) => i)).slice(0, n);
+    appState.sessionChapter = null;
+    appState.timeLimitMs = minutes * 60 * 1000;
+    makeNewSession(chapterId, indices, "custom");
+    requestFullscreen();
+    window.location.hash = `#/practice?chapter=${encodeURIComponent(chapterId)}`;
+    return;
+  }
+
+  // mixed
+  const picked = Array.from(el.customChaptersChecks?.querySelectorAll('input[type="checkbox"]:checked') || []).map(
+    (x) => x.value,
+  );
+  if (picked.length < 2) {
+    setCustomMessage("Select at least 2 chapters for a mixed mock.", "bad");
+    return;
+  }
+  const mixed = buildMixedChapter(picked);
+  if (!mixed.questions.length) {
+    setCustomMessage("Selected chapters have no questions.", "bad");
+    return;
+  }
+  const n = Math.min(qCount, mixed.questions.length);
+  const indices = shuffledCopy(mixed.questions.map((_, i) => i)).slice(0, n);
+  appState.sessionChapter = mixed;
+  appState.timeLimitMs = minutes * 60 * 1000;
+  makeNewSession(mixed.id, indices, "custom");
+  requestFullscreen();
+  window.location.hash = "#/practice?chapter=mixed";
 }
 
 function renderHome() {
@@ -453,7 +620,12 @@ function renderPractice() {
   setView("practice");
   syncFullscreenUi();
   el.practiceChapterTitle.textContent = chapter.title;
-  el.qTimer.textContent = `Time ${formatDuration(appState.elapsedMs)}`;
+  if (appState.timeLimitMs && Number.isFinite(appState.timeLimitMs)) {
+    const left = Math.max(0, appState.timeLimitMs - appState.elapsedMs);
+    el.qTimer.textContent = `Left ${formatDuration(left)}`;
+  } else {
+    el.qTimer.textContent = `Time ${formatDuration(appState.elapsedMs)}`;
+  }
   clearAutoNext();
 
   const total = appState.order.length;
@@ -767,6 +939,15 @@ function attachHandlers() {
   }
   document.addEventListener("fullscreenchange", () => syncFullscreenUi());
 
+  if (el.customForm) {
+    el.customForm.addEventListener("change", (e) => {
+      if (e && e.target && e.target.name === "mockType") syncCustomTypeUi();
+    });
+  }
+  if (el.customStartBtn) {
+    el.customStartBtn.addEventListener("click", () => startCustomMock());
+  }
+
   el.prevBtn.addEventListener("click", goPrev);
   el.clearBtn.addEventListener("click", clearResponse);
   el.nextBtn.addEventListener("click", goNext);
@@ -921,7 +1102,15 @@ function handleRoute() {
   const { route, params } = parseHash();
   if (route === "home") {
     stopTimer();
+    appState.timeLimitMs = null;
+    appState.sessionChapter = null;
     renderHome();
+    return;
+  }
+
+  if (route === "custom") {
+    stopTimer();
+    renderCustom();
     return;
   }
 
