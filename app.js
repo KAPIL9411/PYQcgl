@@ -53,6 +53,7 @@ const el = {
   qMeta: document.getElementById("qMeta"),
   qTimer: document.getElementById("qTimer"),
   fsBtn: document.getElementById("fsBtn"),
+  palettePanel: document.getElementById("palettePanel"),
   qText: document.getElementById("qText"),
   options: document.getElementById("options"),
   feedback: document.getElementById("feedback"),

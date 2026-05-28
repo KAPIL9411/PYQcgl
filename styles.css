@@ -349,6 +349,14 @@ body {
   padding: 7px 10px;
   font-size: 12px;
   border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.btn--xs svg {
+  flex-shrink: 0;
 }
 
 .btn--danger {
@@ -446,10 +454,22 @@ body {
 
 .exam__main {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 280px;
   gap: 12px;
   align-items: start;
   flex: 1;
+}
+
+@media (max-width: 768px) {
+  .exam__main {
+    grid-template-columns: 1fr 240px;
+  }
+}
+
+@media (max-width: 520px) {
+  .exam__main {
+    grid-template-columns: 1fr 200px;
+  }
 }
 
 .workspace {
@@ -565,7 +585,8 @@ body {
   box-shadow: var(--shadow);
   overflow: hidden;
   max-height: calc(100vh - 210px);
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .palette__head {
@@ -627,6 +648,8 @@ body {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
   gap: 8px;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .pbtn {
@@ -843,12 +866,6 @@ body {
   .form__grid {
     grid-template-columns: 1fr;
   }
-  .exam__main {
-    grid-template-columns: 1fr;
-  }
-  .palette__grid {
-    grid-template-columns: repeat(10, minmax(0, 1fr));
-  }
   .card {
     grid-column: span 12;
   }
@@ -863,12 +880,22 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .palette__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 520px) {
   .exam__bar {
     grid-template-columns: 1fr;
   }
   .palette__grid {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .pbtn {
+    padding: 8px 0;
+    font-size: 11px;
   }
   .review {
     grid-template-columns: repeat(1, 1fr);

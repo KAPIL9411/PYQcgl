@@ -143,6 +143,31 @@
               <div class="opts" id="options"></div>
               <div class="feedback" id="feedback" aria-live="polite" hidden></div>
             </div>
+
+            <aside class="palette" id="palettePanel">
+              <div class="palette__head">
+                <div class="palette__title">Question Palette</div>
+              </div>
+              <div class="legend">
+                <div class="legend__item">
+                  <div class="dot"></div>
+                  <span>Not Visited</span>
+                </div>
+                <div class="legend__item">
+                  <div class="dot dot--nv"></div>
+                  <span>Not Answered</span>
+                </div>
+                <div class="legend__item">
+                  <div class="dot dot--ans"></div>
+                  <span>Answered</span>
+                </div>
+                <div class="legend__item">
+                  <div class="dot dot--mr"></div>
+                  <span>Marked</span>
+                </div>
+              </div>
+              <div class="palette__grid" id="paletteList"></div>
+            </aside>
           </div>
 
           <div class="exam__footer" role="group" aria-label="Actions">
