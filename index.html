@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSC CGL PYQ Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar" role="banner">
+      <div class="topbar__inner">
+        <div class="topbar__brand">
+          <img class="topbar__logo" src="./assets/ssc_logo.jpg" alt="SSC logo" />
+          <div class="topbar__brandText">
+            <div class="topbar__title">SSC CGL</div>
+            <div class="topbar__sub">PYQ Practice</div>
+          </div>
+        </div>
+        <nav class="topnav" aria-label="Primary">
+          <a class="topnav__link" href="#/home">Home</a>
+          <a class="topnav__link" href="#/practice?chapter=percentage">Open Practice</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell" id="app" role="main">
+      <section class="view" data-view="home" aria-label="Home">
+        <div class="pagehead">
+          <h1 class="pagehead__title">Chapterwise Practice</h1>
+          <div class="pagehead__meta" id="homeMeta"></div>
+        </div>
+        <div class="panel">
+          <div class="panel__head">
+            <div class="panel__title">Available Chapters</div>
+            <div class="panel__meta">Select a chapter to start</div>
+          </div>
+          <div class="chapters" id="chapterGrid"></div>
+        </div>
+      </section>
+
+      <section class="view" data-view="practice" aria-label="Practice" hidden>
+        <div class="exam">
+          <div class="exam__bar">
+            <div class="exam__barLeft">
+              <a class="link" href="#/home">Home</a>
+              <span class="sep" aria-hidden="true">/</span>
+              <span class="mono" id="practiceChapterTitle"></span>
+            </div>
+            <div class="exam__barMid">
+              <div class="mono" id="progressMeta"></div>
+              <div class="pbar" aria-hidden="true">
+                <div class="pbar__fill" id="progressFill"></div>
+              </div>
+            </div>
+            <div class="exam__barRight">
+              <div class="timer mono" id="qTimer"></div>
+              <button class="btn btn--soft btn--xs" id="fsBtn" type="button">Full Screen</button>
+            </div>
+          </div>
+
+          <div class="exam__main">
+            <div class="workspace" role="group" aria-label="Question">
+              <div class="qhead">
+                <div class="qmeta mono" id="qMeta"></div>
+              </div>
+              <div class="qtext" id="qText"></div>
+              <div class="opts" id="options"></div>
+              <div class="feedback" id="feedback" aria-live="polite" hidden></div>
+            </div>
+          </div>
+
+          <div class="exam__footer" role="group" aria-label="Actions">
+            <button class="btn btn--soft" id="prevBtn" type="button">Previous</button>
+            <button class="btn btn--soft" id="clearBtn" type="button">Clear Response</button>
+            <button class="btn btn--primary" id="nextBtn" type="button">Next</button>
+            <button class="btn btn--danger" id="finishBtn" type="button">Submit Test</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" data-view="results" aria-label="Results" hidden>
+        <div class="results">
+          <div class="results__head">
+            <div class="crumbs">
+              <a class="crumbs__link" href="#/home">Chapters</a>
+              <span class="crumbs__sep" aria-hidden="true">/</span>
+              <span class="crumbs__current" id="resultsChapterTitle"></span>
+            </div>
+            <div class="results__cta">
+              <button class="btn btn--ghost" id="reviewBtn" type="button">Review</button>
+              <button class="btn btn--primary" id="retryWrongBtn" type="button">Retry Wrong</button>
+            </div>
+          </div>
+
+          <div class="summary">
+            <div class="kpi">
+              <div class="kpi__k">Score</div>
+              <div class="kpi__v" id="scoreValue"></div>
+              <div class="kpi__s" id="scoreSub"></div>
+            </div>
+            <div class="kpis">
+              <div class="kpi kpi--small">
+                <div class="kpi__k">Accuracy</div>
+                <div class="kpi__v" id="accValue"></div>
+              </div>
+              <div class="kpi kpi--small">
+                <div class="kpi__k">Time</div>
+                <div class="kpi__v" id="timeValue"></div>
+              </div>
+              <div class="kpi kpi--small">
+                <div class="kpi__k">Attempted</div>
+                <div class="kpi__v" id="attemptedValue"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel__head">
+              <div class="panel__title">Question Review</div>
+              <div class="panel__meta" id="reviewMeta"></div>
+            </div>
+            <div class="review" id="reviewList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./chapters/percentage.js"></script>
+    <script src="./chapters/RatioProportion.js"></script>
+    <script src="./chapters/Mixture-Alligation.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./chapters/Simple-Interest.js"></script>
+    <script src="./chapters/Compound-Interest.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./chapters/Profit-Loss.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
