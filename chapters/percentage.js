@@ -4,7 +4,7 @@ window.BASE_CHAPTERS.push(
   {
     id: "percentage",
     title: "Percentage",
-    desc: "SSC CGL PYQs focused on percentage concepts: increase/decrease, profit-loss style percent, elections, mixed changes.",
+    desc: "SSC CGL PYQs focused on percentage concepts.",
     questions: [
       {
         question_number: 1,
