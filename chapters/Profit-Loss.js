@@ -2105,613 +2105,620 @@ window.BASE_CHAPTERS.push({
     year: null
   },
   {
-    question_number: 301,
-    text: "In an examination, there were two papers, A and B, and the maximum mark in each of the two papers was 10. However, the weights assigned to papers A and B were in the ratio 2: 1, respectively. Jonathan scored 8 out of 10 in Paper A and an overall 70% in the examination. How much did he score in Paper B out of 10?",
-    options: { A: "5.5", B: "6.5", C: "6", D: "5" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 302,
-    text: "In an election between two candidates, the first gets 75% of the total valid votes. If 20% votes are invalid among 2,48,000 votes, then how many votes were cast in the favour of the other candidate?",
-    options: { A: "53800", B: "46800", C: "49600", D: "56600" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 303,
-    text: "The price of an AC increases and decreases in every alternate year by 1 3/5 %. It started with an increase in 2004. The price of the AC in 2007, as compared to that in 2004 (correct to two places of decimals):",
-    options: { A: "increased by 1.57%", B: "decreased by 2.57%", C: "decreased by 1.57%", D: "increased by 2.57%" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 304,
-    text: "If 70 is subtracted from 70% of a number, the remainder is 70. What is the number?",
-    options: { A: "200", B: "100", C: "400", D: "300" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 305,
-    text: "Pass percentage of an examination is 35%. If a student who got 210 marks, failed by 14 marks, then what are the maximum marks of the examination?",
-    options: { A: "640", B: "600", C: "620", D: "660" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 306,
-    text: "If an electricity bill is paid before the due date, one gets a reduction of 10% on the amount of the bill. By paying the bill before the due date, a person got a reduction of ₹23. The amount of his electricity bill (in ₹) was :",
-    options: { A: "380", B: "250", C: "520", D: "230" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 307,
-    text: "A person spends 60% of his income. His income increased by 30% and he increased his expenditure by 20%. His percent savings will then be increased by:",
-    options: { A: "48%", B: "45%", C: "46%", D: "42%" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 308,
-    text: "Ramagya spends 22% of his salary on house rent and 75% of the rest on household expenses. If he saves ₹3,705, find his total income (in rupees).",
-    options: { A: "₹19,000", B: "₹21,000", C: "₹17,000", D: "₹18,000" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 309,
-    text: "In an election, there were only two candidates. 12% of the voters did not cast their votes. The winner by obtaining 60% of the total votes defeated his opposite contestant by 1200 votes. Find the total number of votes.",
-    options: { A: "4000", B: "3750", C: "5730", D: "3570" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 310,
-    text: "Ramesh spends 60% of his income. If his income is increased by 30% and his expenditure is increased by 20%, then the percentage increase in the savings of Ramesh will be:",
-    options: { A: "50%", B: "35%", C: "45%", D: "30%" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 311,
-    text: "During 2021, the population of a city increased by 8% and in 2022, it increased by 10%. At the end of 2022, its population was 47520. The population of the city at the end of 2021 was :",
-    options: { A: "40000", B: "43200", C: "42300", D: "44000" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 312,
-    text: "In a school, an exam was held for 80 marks in which 32 was the passing marks. Who among the following scored the minimum marks ? Note : Round off upto one decimal only.",
-    options: { A: "D, who got 12/19 of the total marks", B: "C, who got 160% of the passing marks", C: "A, who got 72% marks in the exam", D: "B, who got 7/11 of the total marks" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 313,
-    text: "In a company, 35% of employees are from a science background and 1/5th are from an arts background. The rest are either illiterate or with a commerce background. The number of illiterate is 300 which is 1/2 of the commerce background. How many employees are from science or arts background ?",
-    options: { A: "2000", B: "2800", C: "2500", D: "1500" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 314,
-    text: "The sum of the two numbers is 450. If the greater number is decreased by 4% and the smaller number is increased by 20%, then the numbers obtained are equal. The smaller number is:",
-    options: { A: "176", B: "200", C: "164", D: "144" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 315,
-    text: "The strength of a school increases and decreases every alternate year by 20%. It started with an increase in 2018. What is the strength of the school at the start of 2021 as compared to that of 2018 ?",
-    options: { A: "Increase by 15.2%", B: "Decrease by 16.2%", C: "Increase by 16.2%", D: "Decrease by 15.2%" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 316,
-    text: "Vinod and Sanjay were fighting against each other for the post of a village Pradhan. Sanjay got 47.5% votes and lost the election by 270 votes. How many votes did Vinod get (assuming that all the villagers participated in the voting)?",
-    options: { A: "2655", B: "2835", C: "2385", D: "2565" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 317,
-    text: "A person spends 40% of his salary on food items, 50% of the remaining on transport, and 30% of the remaining on clothes. After spending on food, transport and clothes, he saves ₹1,260 every month, what is his monthly salary?",
-    options: { A: "₹8,000", B: "₹6,000", C: "₹7,000", D: "₹10,000" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 318,
-    text: "A stock portfolio consists of three stocks. Stock A represents 30% of the portfolio and has a return of 5%. Stock B represents 40% of the portfolio and has a return of 10%. Stock C represents the remaining 30% of the portfolio and has a return of 8%. What is the average return of the portfolio?",
-    options: { A: "7.9%", B: "7.5%", C: "7.2%", D: "8.1%" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 319,
-    text: "The number of toys manufactured by a machine in 2018 was 25,000, which increased by 20% in 2019. In 2020, the production was hindered by strike and it fell by 15%. How many total toys were manufactured in three years by the machine?",
-    options: { A: "80000", B: "89500", C: "25500", D: "80500" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 320,
-    text: "The population of the city was 1,75,000 two years ago. If it had increased by 4% and 5% in the last two years, find the present population of the city.",
-    options: { A: "1,89,200", B: "1,92,100", C: "1,93,200", D: "1,91,100" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 321,
-    text: "A number is increased by 25% and then decreased by 16%, the final value of the number:",
-    options: { A: "decreases by 13%", B: "increases by 5%", C: "does not change", D: "decreases by 5%" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 322,
-    text: "A dishonest shopkeeper sells rice at a cost price but makes a 25% profit by using faulty weights. He decides to give a discount to attract more customers. What percent of discount should he offer to make 10% profit ?",
-    options: { A: "11%", B: "12%", C: "10%", D: "9%" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 323,
-    text: "In an election, a candidate who gets 90% votes is elected by a margin of 800 votes. What is the total number of votes polled? Note: There are only two candidates contesting the election and assume all the votes were valid.",
-    options: { A: "1050", B: "950", C: "1000", D: "900" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 324,
-    text: "In an election between two candidates, 80% of the voters cast their votes, out of which 5% votes were declared invalid. A candidate got 9500 votes which were 80% of the valid votes. Find the total number of voters enrolled in that election.",
-    options: { A: "14780", B: "15625", C: "16100", D: "15100" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 325,
-    text: "The fraction equivalent to 1/5 % is:",
-    options: { A: "1/125", B: "1/500", C: "1/200", D: "1/40" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 326,
-    text: "In an election between two candidates, 30% of the electorate did not cast their votes. 20% of the votes polled were found invalid. The winning candidate got 64% of the valid votes and won by a majority of 3136 votes. Find the number of voters enrolled in the voter list.",
-    options: { A: "24000", B: "20000", C: "25000", D: "30000" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 327,
-    text: "In an election between two candidates, the difference between the candidates who won and lost was 2,500 votes. The candidate who won got 75% of the votes, and there were no invalid votes. The total number of votes polled of the losing candidate was:",
-    options: { A: "1875", B: "1250", C: "5000", D: "3750" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 328,
-    text: "In an election between two candidates, 20% of the voters on the voters list did not cast their votes and 80 voters cast their ballot papers blank. The winner secured 45% of all the voters in the list and he got 280 votes more than his rival. The number of voters on the list was:",
-    options: { A: "1100", B: "1200", C: "1500", D: "1300" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 329,
-    text: "A family earns ₹75,000, out of which 10% is saved. 30% of the expenditure is incurred on education, while ₹30,375 is spent on health and the remaining amount is spent on food. What is the percentage of food expenditure to the total income?",
-    options: { A: "20%", B: "21.5%", C: "22.5%", D: "32.5%" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 330,
-    text: "If the first number is 20% less than the third number and the ratio of the second to the third number is 7 : 10, then the average of the first and the third number is how much percent more than the second number ?",
-    options: { A: "26 4/7 %", B: "28 2/7 %", C: "28 4/7 %", D: "24 2/7 %" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 331,
-    text: "A contractor reduces the working time of a week (Monday to Saturday) from 48 hours to 36 hours for his workers without changing the payment. What is the percentage increase in the hourly rate?",
-    options: { A: "30 1/3 %", B: "33 1/3 %", C: "67 2/3 %", D: "70 2/3 %" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 332,
-    text: "A family spends 20% of its monthly income on house rent. Out of the remaining amount, the family spends 50% on household expenditure and 20% on children's education. If after doing so, its monthly saving is ₹6,600, then what is the total monthly income of the family?",
-    options: { A: "₹25,000", B: "₹27,500", C: "₹30,000", D: "₹28,000" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 333,
-    text: "Suresh could save 20% of his income. But 4 years later, when his income increased by 40%, he could save the same amount only as before. By how much percentage did his expenditure increase?",
-    options: { A: "23%", B: "50%", C: "22%", D: "45%" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 334,
-    text: "Bhushan's monthly income is ₹45,000 and his monthly expenditure is ₹33,000. If his monthly income is increased by 22% while monthly expenditure is increased by 11%, then what is his new monthly savings (in ₹) ?",
-    options: { A: "18,270", B: "18,690", C: "18,000", D: "19,000" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 335,
-    text: "If the price of a movie ticket increased by 12 1/2 % and the sale of tickets also increased by 8 1/2 %, then find % change in income.",
-    options: { A: "21.875%", B: "22.6750%", C: "20.675%", D: "22.0625%" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 336,
-    text: "In a village election between three candidates, 80% of the voters cast their votes, out of which 3% votes were declared invalid. The winning candidate got 42,680 votes which were 55% of the total valid votes. Find the number of valid votes received by the candidate who stood third, given that he received only 10% of the total valid votes.",
-    options: { A: "7760", B: "7700", C: "7670", D: "7680" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 337,
-    text: "A total of 7,50,000 voters participated in an election. A candidate received 3,82,500 votes which was 60% of the total valid votes. What was the percentage of invalid votes in the election?",
-    options: { A: "15%", B: "20%", C: "12%", D: "18%" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 338,
-    text: "If the curved surface area of a cylinder is increased by 20%, and height is decreased by 4%, then the net decrease or increase in the volume will be:",
-    options: { A: "36 % decrease", B: "20 % increase", C: "50 % increase", D: "33 % decrease" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 339,
-    text: "Ravi initially had a certain number of chocolates, while Bhanu initially had 80% of the number of chocolates that Ravi initially had. Ravi gave 10% of his chocolates to his sister while Bhanu received from his uncle another 35% of the number of chocolates he initially had. If Bhanu finally had 54 chocolates, how many chocolates did Ravi give to his sister?",
-    options: { A: "3", B: "6", C: "5", D: "4" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 340,
-    text: "Rajat, Pooja and Abha participate in the election. If the total votes polled are 40,000 and 10% of votes are invalid, Rajat got 36% of valid votes and Pooja got 40% of valid votes, then find the number of votes Abha got.",
-    options: { A: "9245", B: "1024", C: "8640", D: "5760" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 341,
-    text: "In an election between two candidates, 85% of the electorate cast their votes. 6% of the votes polled were declared invalid. If the winning candidate secured 60% of the valid votes, how many votes did the winning candidate receive if the number of eligible voters was 10000 ?",
-    options: { A: "4784", B: "4804", C: "4794", D: "4824" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 342,
-    text: "65% of Samita's income is equal to 91% of Bhairav's income. If Samita's income was ₹1,500 more than what it is and Bhairav's income was ₹500 more than what it is, the ratio of the incomes of Samita and Bhairav would have been 3 : 2. What is the actual combined income (in ₹) of Samita and Bhairav?",
-    options: { A: "18,500", B: "17,500", C: "20,000", D: "18,000" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 343,
-    text: "In an election, 2% persons enrolled in the voter list did not participate and 500 votes were invalid. Two candidates A and B fought the election, and A defeated B by 200 votes. If 43% of the persons enrolled in the voter list casted their votes in favour of A, then what is the number of the total casted votes?",
-    options: { A: "2450", B: "2800", C: "3000", D: "3250" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 344,
-    text: "In an election between three candidates, Arjun, Bhaskar and Saral contested for a post. Arjun got 50% votes more than Saral, and Saral got 2% votes less than Bhaskar. The difference between the votes of Bhaskar and Saral is 1296. What is the half of the difference between the votes of Arjun and Bhaskar?",
-    options: { A: "3888", B: "13988", C: "7766", D: "15228" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 345,
-    text: "Suhani pays tax at the rate of 30% on her entire income of ₹90,000 and Ritika pays tax at the rate of 40% on her entire income of ₹y. If the overall tax rate on their combined income comes to 37%, then what is the value of y?",
-    options: { A: "₹2,04,000", B: "₹2,16,000", C: "₹2,13,000", D: "₹2,10,000" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 346,
-    text: "In a constituency, 90% of the total number of people on the electoral roll cast their votes during an election. 15% of the votes cast were declared invalid. Jeeta secured 60% of the valid votes. If Jeeta secured 91,800 valid votes, what was the total number of people on the electoral roll?",
-    options: { A: "2,16,000", B: "2,25,000", C: "1,80,000", D: "2,00,000" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 347,
-    text: "In a constituency, 85% of the total number of people on the electoral roll cast their votes during an election. 10% of the votes cast were declared invalid. If there were 3,00,000 people on the electoral roll and Dharam secured 1,37,700 valid votes, what percentage of the total number of valid votes did Dharam secure ?",
-    options: { A: "50.5%", B: "70.2%", C: "45.9%", D: "60.0%" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 348,
-    text: "If the price of petrol increased by 7%, then by what percentage should the consumption be decreased by the consumer, if the expenditure on petrol remains unchanged ?",
-    options: { A: "6 58/107 %", B: "5 11/107 %", C: "3 49/107 %", D: "4 99/107 %" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 349,
-    text: "In a certain year, the population of a city was 18000. If in the next year, the population of males increased by 5% and that of females increased by 7%, and the total population increased to 19200, then what was the ratio of the populations of males and females in that given year?",
-    options: { A: "2 : 5", B: "1 : 5", C: "4 : 3", D: "3 : 5" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 350,
-    text: "In January 2022, Kriti paid an EMI, which was 22% of her monthly salary. She spent the remaining salary on shopping of groceries and clothes in the ratio 7 : 5. She spent ₹18200 on shopping of clothes. If, in February 2022, her salary increased by 16%, then what was her salary (in ₹) in February?",
-    options: { A: "66,350", B: "68,520", C: "70,250", D: "64,960" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 351,
-    text: "A person spends 25% of his income on goods of daily uses. Furthermore, he spends 18% of the rest on house rent and 16% of the rest on travel. After that, only ₹861 is left with him. What is his salary?",
-    options: { A: "₹1852", B: "₹1666 2/3", C: "₹1563 1/3", D: "₹1426 1/3" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 352,
-    text: "In an examination a candidate had to sit for three papers A, B, and C. The candidate secured 75% marks in Paper A, 80% marks in Paper B, and 60% marks in Paper C. If the weightage assigned to Papers A, B, and C were 40%, 50% and 10%, respectively, then find the weighted percentage of marks obtained by the candidate, when all the three papers were taken together.",
-    options: { A: "77%", B: "74%", C: "72%", D: "76%" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 353,
-    text: "Out of the total toffees, 1/10 are wasted. 35% of the rest are given to S and 1/8 of the total are given to N. If the toffees with N are 10 more than the wasted toffees, then how many toffees were given to S ?",
-    options: { A: "126", B: "150", C: "110", D: "135" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 354,
-    text: "A family income is ₹35,000 in a month. The family spends the income on various expenditures, viz., food, health, education, entertainment, and rent. After incurring all the expenditures, 8% is saved every month. The expenditure on health is 50% more than that of food. While food is three times of the expenditure on entertainment, the expenditure on health is half of the expenditure on education. The expenditure on rent is one-third of the combined expenditure on food, health and education. How much expenditure (in ₹) is incurred on education?",
-    options: { A: "12600", B: "8400", C: "13200", D: "7700" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 355,
-    text: "Tarun owned a plot of land having an area that was 10% more than the area of the plot owned by Basab, while the area of the plot of land owned by Nakul was 40% more than the area of the plot owned by Tarun. If the area of the plot owned by Nakul was 2695 square feet, what was the area (in square feet) of the plot owned by Basab ?",
-    options: { A: "1750", B: "1740", C: "1780", D: "1800" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 356,
-    text: "A father gives 8% of his monthly income to both his sons as pocket money. The elder son gets 85% of the total amount given to both the sons. He spend 90% of the amount and saves ₹17. What is the monthly income of father ?",
-    options: { A: "₹ 5,000", B: "₹ 4,500", C: "₹ 3,500", D: "₹ 2,500" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 357,
-    text: "During the previous year, the price of an electronic item increased by 10%, and this year, the price of the same item decreased by 10%. If the price of the electronic item at present is ₹66,000, then what was the price of the discussed electronic item in the beginning of the previous year? (Rounded off to one decimal place)",
-    options: { A: "₹91,262.5", B: "₹72,432.4", C: "₹66,666.7", D: "₹ 82,345.4" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 358,
-    text: "If the numerator of a fraction is increased by 12% and its denominator is reduced by 8%, it gives a new fraction 16/17 . What is the original fraction?",
-    options: { A: "23/28", B: "119/92", C: "28/23", D: "92/119" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 359,
-    text: "The monthly income of a person was Rs.80,000 and his monthly expenditure was Rs.45,000. Next year, his income increased by 16% and his expenditure increased by 8%. Find the percentage increase in his savings (correct to 2 decimal places).",
-    options: { A: "25.35%", B: "26.29%", C: "30.25%", D: "44.36%" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 360,
-    text: "While playing cards, a man loses 75% of his money in the first round, 75% of the remaining in the second round, and 75% of the remaining in the third round. If he is left with Rs.100, how much money does he have initially?",
-    options: { A: "Rs.6,400", B: "Rs.2,400", C: "Rs.1,600", D: "Rs.3,200" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 361,
-    text: "In an election between two candidates, one candidate got 60% of the valid votes. If the total number of votes polled were 8850, and 10% of the votes were invalid, then find the number of valid votes that the other candidate got.",
-    options: { A: "3816", B: "3186", C: "3681", D: "3618" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 362,
-    text: "In an election between two candidates, 84 votes were declared as invalid. The winning candidate secures 62% of the valid votes and wins by 96 votes. The number of votes polled is:",
-    options: { A: "424", B: "543", C: "641", D: "484" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 363,
-    text: "A family member spends 25% of his monthly income on food, 35% of the remaining on a home loan and other bank debts, and half of the rest on the education of the children. If the member saves $46,215 every year, then the monthly income of the member is:",
-    options: { A: "$15,800", B: "$190,248", C: "$15,520", D: "$19,200" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 364,
-    text: "The annual growth rate of a city is 2%. If its population in the year 2020 was 1,50,000, then what will its population be in 2023?",
-    options: { A: "1,59,181", B: "1,58,765", C: "1,58,413", D: "1,59,000" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 365,
-    text: "Gita purchases an apartment and pays EMI for that. Her monthly income is ₹80,000. She spends 15% on the education of her children, 40% on household affairs, sends 10% to GPF, saves 15% in a savings bank account and pays the rest of the amount as EMI. How much EMI does she pay?",
-    options: { A: "₹14,000", B: "₹18,000", C: "₹16,000", D: "₹20,000" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 366,
-    text: "In an election between two candidates. 20% of the registered voters did not cast their vote and 40 votes were declared invalid. The winner got 42% of the registered votes and was declared the winner by 112 votes. The number of registered voters was:",
-    options: { A: "1500", B: "1200", C: "1800", D: "3800" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 367,
-    text: "The price of a mobile is Rs. 30,000. The value of the mobile depreciates by 12% at the end of the first year and at the end of next year, it depreciates by 15%. What will be the value of the mobile after 2 years ? (In Rs.)",
-    options: { A: "25,255", B: "22,440", C: "20,000", D: "25,000" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 368,
-    text: "A alone can complete half of a work in 150 days. In 50 days, what percentage of the work will be completed by A ?",
-    options: { A: "16.67 percent", B: "15 percent", C: "20 percent", D: "22.5 percent" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 369,
-    text: "Manisha has Rs. 8000 in her wallet. Then she increased it by 10%. Now she spent 5% of it. The final value of money in her wallet will be how much percent greater than the initial amount?",
-    options: { A: "5%", B: "6%", C: "4.5%", D: "5.5%" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 370,
-    text: "The annual salary of Aniket increased from Rs. 1000000 to Rs. 1400000. What is the percent increase?",
-    options: { A: "14%", B: "40%", C: "20%", D: "4%" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 371,
-    text: "If both length and breadth of a cuboid is increased by 12 percent, then by how much percent its height should be reduced so that the volume of the cuboid remains same?",
-    options: { A: "14.56 percent", B: "24.72 percent", C: "20.28 percent", D: "28.44 percent" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 372,
-    text: "If the price of onion increases from Rs. 60/kg to Rs. 75/kg, then by what percentage a household should decrease the consumption of onion so that expenditure remains same ?",
-    options: { A: "40 %", B: "25 %", C: "20 %", D: "30 %" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 373,
-    text: "A man multiplied a number by 8/5 instead of 5/8, what is the percentage error in the calculation?",
-    options: { A: "124%", B: "162%", C: "156%", D: "100%" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 374,
-    text: "Vikas gave 3 examinations. The respective ratio of marks scored by him in the 3 examinations is 3 : 5 : 6. The respective ratio of maximum marks of the 3 examination is 7 : 11 : 10. If he scored 50 percent marks in total, then in how many examination has he scored marks more than 50 percent?",
-    options: { A: "None", B: "1", C: "3", D: "2" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 375,
-    text: "If 60 is subtracted from 30 percent of a number, then the result is 120. What is the value of the number?",
-    options: { A: "550", B: "600", C: "700", D: "630" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 376,
-    text: "In an examination out of 6000 students 60% boys and 90% girls are passed. If total pass percentage was 65%, then what would be the number of boys?",
-    options: { A: "3500", B: "5000", C: "4500", D: "5500" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 377,
-    text: "If 20 percent of P is added to 40 percent of Q, then the resultant comes as 80 percent of Q . P is what percentage of Q ?",
-    options: { A: "125 %", B: "200 %", C: "225 %", D: "150 %" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 378,
-    text: "Out of two numbers, 20 percent of the smaller number is equal to 14 percent of the Larger number. If the sum of both the numbers is 8942, then what is the value of larger number ?",
-    options: { A: "4920", B: "5260", C: "5040", D: "5160" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 379,
-    text: "In the Lok Sabha election, Party A got 30% of the total votes. Party B got 25% of the total votes. Party C got the remaining votes and they got 9000 more votes than Party A. Find the number of votes Party B got.",
-    options: { A: "12000", B: "18000", C: "21000", D: "15000" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 380,
-    text: "The price of a commodity is decreased by 25 percent and therefore a household increased the consumption of that commodity by 20 kg to keep the expenditure same. What was the earlier consumption?",
-    options: { A: "60 kg", B: "55 kg", C: "75 kg", D: "45 kg" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 381,
-    text: "There are three numbers P , Q and R. 30 percent of P is equal to the 15 percent of Q . 20 percent of Q is equal to the 10 percent of R. By what percent is R more than P ?",
-    options: { A: "200 %", B: "300 %", C: "150 %", D: "250 %" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 382,
-    text: "In an election between two candidates, one got 60% of the total valid votes, 90% of the votes were valid. If the total number of votes was 12000, then what was the number of valid votes that the other candidate got?",
-    options: { A: "8840", B: "4320", C: "10800", D: "6200" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 383,
-    text: "Rajiv scored 20 percent marks in an exam and failed by 25 marks. If he scores 50 percent marks, then he gets 20 marks more than passing marks. What is the passing marks for the exam?",
-    options: { A: "40", B: "35", C: "55", D: "45" },
-    correct_answer_index: 2,
-    year: null,
-  },
-  {
-    question_number: 384,
-    text: "Student A got 25 marks more than the student B and the marks of A were equal to the 60 percent of the sum of their marks. What are the marks obtained by A and B respectively?",
-    options: { A: "75, 100", B: "75, 50", C: "45, 120", D: "55, 80" },
-    correct_answer_index: 1,
-    year: null,
-  },
-  {
-    question_number: 385,
-    text: "Nakul went to the market to buy groceries. He has some money with him, 20% of which he used to buy wheat flour, 25% of the remaining money is spent on cooking oils. If he is left with Rs.900, then find out total amount of money that Nakul had.",
-    options: { A: "Rs.1,500", B: "Rs.1,200", C: "Rs.1,350", D: "Rs.1,800" },
-    correct_answer_index: 0,
-    year: null,
-  },
-  {
-    question_number: 386,
-    text: "If the price of an apple is reduced by 30 Percent, it enables the customer to buy 5 more apples for Rs.140. Find the reduced rate of apples.",
-    options: { A: "Rs.14", B: "Rs.12", C: "Rs.7", D: "Rs.8.4" },
-    correct_answer_index: 3,
-    year: null,
-  },
-  {
-    question_number: 387,
-    text: "Price of 15 chairs is 20 percent more than the price of 8 tables. If price of 2 tables is Rs. 2400, then what is the price of 15 chairs?",
-    options: { A: "Rs. 10,320", B: "Rs. 12,380", C: "Rs. 11,520", D: "Rs. 10,780" },
-    correct_answer_index: 2,
-    year: null,
-  }
-  ],
+  question_number: 301,
+  text: "Arbind has 650 kg of wheat. A part of which he sells at 9% profit and the rest at 19% profit to get 15% profit on the whole. What is the quantity (in kg) of wheat sold by Arbind at 9% profit?",
+  options: { A: "260", B: "390", C: "195", D: "455" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 302,
+  text: "A shopkeeper sells sugar at ₹40 per kg, which he purchased at ₹36 per kg. His weighing machine is faulty and it weighs only 800 gm while selling. His percentage profit (correct to 2 decimal places) is:",
+  options: { A: "40%", B: "37.58%", C: "38.89%", D: "39.28%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 303,
+  text: "Ankita sold three toys. The first toy was sold for ₹1,500 at a profit of 25%; the second toy was sold for ₹2,800 at a loss of 50% and the third toy was sold for ₹3,500 at a profit of 25%. Find her total profit or loss percentage.",
+  options: { A: "15.25% profit", B: "18.75% loss", C: "18.75% profit", D: "15.25% loss" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 304,
+  text: "Samridhi sold a gold ring at a loss of 26%. If the cost price of the gold ring is ₹38,500, what is the selling price of the gold ring?",
+  options: { A: "₹28,490", B: "₹30,500", C: "₹29,590", D: "₹38,600" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 305,
+  text: "The cost price of an article is ₹1,120. After allowing a discount of ₹205 a gain of 15% was made, then the marked price of the article is:",
+  options: { A: "₹1,760", B: "₹1,493", C: "₹1,350", D: "₹1,580" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 306,
+  text: "A manufacturer earns a profit of 10% on selling his products to a wholesale dealer. The wholesale dealer earns a profit of 15% by selling it to a retailer. The retailer, in turn, earns a profit of 25% from the customer. What is the actual cost of production of an article for which the customer pays ₹12,650?",
+  options: { A: "₹8,000", B: "₹8,500", C: "₹9,000", D: "₹7,000" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 307,
+  text: "A grocer purchased 50 kg of sugar at ₹40 per kg and mixed with 70 kg of sugar at ₹30 per kg. At what rate should he sell the mixture (per kg) to gain 20%?",
+  options: { A: "₹60", B: "₹20", C: "₹35", D: "₹41" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 308,
+  text: "A store sells an item for ₹500, making a profit of 25%. Later, the store reduces the price of the item by 20% to clear out old inventory. What is the new percentage profit or loss for the store?",
+  options: { A: "2% profit", B: "5% profit", C: "5% loss", D: "No profit, no loss" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 309,
+  text: "Vaishali booked a bus ticket for ₹1,260. Because of her ill health, she had to cancel the ticket. She got a refund of ₹945 in this process. What is the percentage loss that Vaishali had to face?",
+  options: { A: "23%", B: "15%", C: "25%", D: "33%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 310,
+  text: "By selling 8 items, a shopkeeper gains the selling price of 2 items. The gain percentage of the shopkeeper is:",
+  options: { A: "25%", B: "16.5%", C: "33.33%", D: "30%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 311,
+  text: "Zeenat earns 20% on an investment, but she loses 10% on other investments. If the two investments are respectively in the ratio of 3 : 5, then what is the percentage gain or loss for Zeenat on the two investments taken together?",
+  options: { A: "1.25% Gain", B: "2.25% Loss", C: "1.25% Loss", D: "2.25% Gain" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 312,
+  text: "The profit obtained by a vendor on selling goods at ₹3,200 is equal to 7/5th of the profit obtained by selling the same goods at ₹3,000. What is the cost price (in ₹) of the goods?",
+  options: { A: "2,500", B: "2,700", C: "2,400", D: "2,900" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 313,
+  text: "Kavita bought a table at 30% discount on its original price. She sold it with 48% increase on the price she bought it. What is the percentage difference between the new sale price and original price? If the original price is ₹8,000, then how much extra money did Kavita get as profit?",
+  options: { A: "5.6%; ₹280", B: "3.6%; ₹288", C: "6%; ₹360", D: "4.5%; ₹308" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 314,
+  text: "A man sold his cycle at 17% loss. If he had sold it for ₹1,056 more, he would have made 5% profit. The cost price of the cycle is:",
+  options: { A: "₹4,700", B: "₹3,800", C: "₹5,100", D: "₹4,800" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 315,
+  text: "The percentage profit earned by selling an article for ₹955 is equal to the percentage loss incurred by selling the same article for ₹845. At what price should the article be sold to make a 6% profit?",
+  options: { A: "₹955", B: "₹954", C: "₹925", D: "₹1,014" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 316,
+  text: "Ravi sells a laptop bag to Reeta for ₹1,920 and he sells another similar laptop bag to Vinay for ₹1,280. The percentage profit earned in selling the laptop bag to Reeta is equal to the percentage loss in selling the laptop bag to Vinay. At what price (in ₹) should Ravi sell the laptop bag to make a profit of 25%?",
+  options: { A: "1,650", B: "1,600", C: "1,800", D: "2,000" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 317,
+  text: "A milk vendor mixes water with milk and by selling the mixture at the cost price be gains 16%. Find the ratio of milk to water in the mixture.",
+  options: { A: "7 : 40", B: "80 : 13", C: "13 : 80", D: "40 : 7" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 318,
+  text: "A seller marked the price of a sofa 25% more than its cost price. If he allows 12% discount on the marked price to the customer, then what is his gain percentage? If the cost price of the sofa is ₹15,000, then what is his gain money?",
+  options: { A: "9%, ₹1,480", B: "8%, ₹1,350", C: "10%, ₹1,500", D: "9.5%, ₹1,600" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 319,
+  text: "Some oranges were purchased at ₹150 per hundred and sold at ₹24 per dozen. It gave a gain of ₹1,000. How many oranges were purchased?",
+  options: { A: "3000", B: "2500", C: "1500", D: "2000" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 320,
+  text: "A medical store owner purchased medicines worth ₹18,000 from a company. He sold 2/5 part of the medicine at a 35% loss. On which gain, he should sell the rest of the medicines so that he has neither gain nor loss?",
+  options: { A: "23%", B: "20.67%", C: "20%", D: "23.33%" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 321,
+  text: "A microwave and a dish washing machine were sold for ₹27,000 each. If the microwave was sold at a gain of 25% and the dish washing machine at a loss of 25%. What is the overall profit % or loss% on the entire transaction?",
+  options: { A: "5.50% loss", B: "7.75% profit", C: "6.25% loss", D: "8.25% profit" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 322,
+  text: "A jewel was sold passing through 3 hands and on the whole, its price is raised by 80%. The first seller earns 20% profit and the second seller earns 25% profit, respectively. Find the percentage of profit earned by the third seller.",
+  options: { A: "20%", B: "10%", C: "15%", D: "5%" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 323,
+  text: "Praveen sells a study table to Zoya at a loss of 10%, and Zoya sells the study table to Aadarsh at a profit of 25%. If Aadarsh purchased the study table for ₹2,250, then what was the cost (in ₹) of the study table for Praveen?",
+  options: { A: "2,000", B: "2,100", C: "1,800", D: "1,900" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 324,
+  text: "A factory owner earns 12% on the product manufactured by him. The shopkeeper earns 10% profit on the same item. If shopkeeper sells the product for ₹98.56, then the cost price of the product for the factory owner is ₹ ___.",
+  options: { A: "88", B: "90", C: "84", D: "80" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 325,
+  text: "A shopkeeper marks his goods at 80% more than their cost price and allows a discount of 48% on the marked price. His loss percentage is:",
+  options: { A: "5.6%", B: "6.4%", C: "1.6%", D: "1.2%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 326,
+  text: "A publisher supplies books to a book-seller at 20% discount on the list price of ₹1,574.80. If the book-seller sells books at the list price and if his expenses for freight etc. are ₹45.40. Determine his profit.",
+  options: { A: "₹285.34", B: "₹269.56", C: "₹273.50", D: "₹282.22" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 327,
+  text: "S sells an item costing ₹37,800 to P with 8% profit. P sells it to Q with a 4% loss. At what price (in ₹) does P sell the item? (Correct to a nearest rupee)",
+  options: { A: "39,919", B: "39,119", C: "39,191", D: "39,911" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 328,
+  text: "If a man purchases kismis at ₹320 per kg and sells it at ₹6 per 25 grams, then his profit / loss percentage is:",
+  options: { A: "20% loss", B: "25% loss", C: "25% profit", D: "20% profit" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 329,
+  text: "The ratio of cost price (CP) and marked price (MP) of an article is 4 : 7. A discount of 20% is given on MP and the shopkeeper made a profit of ₹80. Find the CP of the article.",
+  options: { A: "₹190", B: "₹170", C: "₹200", D: "₹180" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 330,
+  text: "In April 2019, Dinesh purchased a new car for ₹7,00,000 and sold it in April 2022 at its depreciated cost. If the rate of depreciation in the first year is 20%, 15% in the second year and 10% every year thereafter, what amount of money will Dinesh get as the selling price?",
+  options: { A: "₹4,28,400", B: "₹4,28,600", C: "₹4,68,400", D: "₹5,28,400" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 331,
+  text: "A profit earned by selling an article for ₹1,032 is equal to the loss incurred when the same article is sold for ₹648. What should be the selling price of the article if the profit is 30%?",
+  options: { A: "₹2,520", B: "₹1,050", C: "₹1,092", D: "₹998" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 332,
+  text: "A trader allows a 40% discount on his goods, but he loses 30% on them. Find the percentage of the marked price above the cost price.",
+  options: { A: "15.67%", B: "15.33%", C: "16.67%", D: "16.33%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 333,
+  text: "The marked price of the cupboard is ₹15,750, which is 50% above its cost price. It is sold at a discount of 40%. What is the profit/loss percentage?",
+  options: { A: "Profit, 10%", B: "Loss, 10%", C: "Loss, 20%", D: "Profit, 20%" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 334,
+  text: "A vendor earns 10% on an investment but loses 10% on another investment. What will be the combined loss or gain if the two investments are in the ratio 1 : 3?",
+  options: { A: "4% loss", B: "5% gain", C: "4% gain", D: "5% loss" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 335,
+  text: "A retailer buys 50 pens at the marked price of 44 pens. If he sells these pens at a discount of 1% on the marked price, what is the profit per cent?",
+  options: { A: "10%", B: "12.5%", C: "12%", D: "15%" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 336,
+  text: "A dealer gives a 7% discount on the marked price and gives 1 article free for buying every 25 articles and thus gains 25%. Find the percentage increase in the marked price above the cost price (round up to two decimal places).",
+  options: { A: "39.78%", B: "37.88%", C: "1.4%", D: "38.87%" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 337,
+  text: "Sukhen purchased some perishable items for sale but 15% of those items could not be sold and went bad. However, Sukhen managed to sell the rest of the items at a price that helped him earn an overall profit of 19%. At what percentage above the cost price of each item did Sukhen sell each of the items that did NOT go bad?",
+  options: { A: "40%", B: "42%", C: "34%", D: "36%" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 338,
+  text: "The marked price of a toy car is ₹600. The shopkeeper gives a discount of 4% and still makes a profit of 28%. Find the cost price of a toy car.",
+  options: { A: "₹460", B: "₹420", C: "₹480", D: "₹450" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 339,
+  text: "A renowned brand marked its goods at 40% above the cost price but allows a discount of 7.5% for UPI payments to the customers. What actual profit is made on a shirt, if a customer pays ₹1,813 to buy it using UPI?",
+  options: { A: "₹413", B: "₹348", C: "₹378", D: "₹393" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 340,
+  text: "The marked price of a T-shirt is ₹560. The shopkeeper Krishna allows a discount of 16% and gains 12%. What would be the gain of Krishna if no discount is allowed?",
+  options: { A: "16.67%", B: "31.11%", C: "33.33%", D: "11.11%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 341,
+  text: "A person purchased ten boxes of grapes at a cost of ₹2,000 per box. Each box contained 20 kgs of grapes. He sold each box at the rate of ₹2,500 per box. But on the whole 10 kgs of grapes were damaged. Further he paid ₹1,000 as transport charges. Find his gain or loss.",
+  options: { A: "Gain ₹2,050", B: "Loss ₹1,000", C: "Gain ₹2,750", D: "Loss ₹1,500" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 342,
+  text: "Pawan purchases 70 articles for ₹16,875 and sells them at a loss equal to the selling price of 5 articles. What will be the selling price of one article?",
+  options: { A: "₹220", B: "₹230", C: "₹235", D: "₹225" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 343,
+  text: "At how much per cent above the cost price should a trader mark his goods so that after allowing a discount of 25%, he still gains 5%?",
+  options: { A: "35%", B: "32%", C: "50%", D: "40%" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 344,
+  text: "Shyam purchased a packet of 16 pens and got 4 pens free with it. He marked the price 20% more than the CP. If he did not allow any discount and sold all the 20 pens at this price, then what was his profit percentage?",
+  options: { A: "37.5%", B: "50%", C: "36%", D: "48%" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 345,
+  text: "A shopkeeper sells a table at a discount of 25% on the marked price and earns a profit of 80%. If he sells the same table at a 40% discount, then his new profit is:",
+  options: { A: "31%", B: "44%", C: "33%", D: "41%" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 346,
+  text: "The cost price of 240 articles is the same as the selling price of x articles. If profit is 20%, find the value of x.",
+  options: { A: "200", B: "21", C: "180", D: "240" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 347,
+  text: "The marked price of 85 items was equal to the cost price of 153 items. The selling price of 104 items was equal to the marked price of 65 items. Calculate the percentage profit or loss from the sale of each item.",
+  options: { A: "12.5% loss", B: "12.5% profit", C: "15% profit", D: "12.25% profit" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 348,
+  text: "A man sells rice at 8% profit and uses weight 25% less than the actual measure. What is his percentage profit?",
+  options: { A: "44%", B: "41%", C: "23%", D: "36%" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 349,
+  text: "A 45% profit is made when a discount of 45% is given on the marked price of an item. If the discount on the marked price of the same item is 50%, then the profit will be:",
+  options: { A: "31.82%", B: "9.82%", C: "30.64%", D: "31.64%" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 350,
+  text: "A trader allows a discount of 5% for cash payment. What percentage above the cost price must he mark his goods to make a profit of 14%?",
+  options: { A: "30%", B: "40%", C: "50%", D: "20%" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 351,
+  text: "Deepak starts a business with a capital of ₹1,60,000. He incurs a loss of 10% during the first year. But he makes a profit of 5% during the second year on his remaining investment. Finally, he makes a profit of 25% on his new capital during the third year. Find his total profit at the end of three years.",
+  options: { A: "₹29,500", B: "₹29,000", C: "₹28,000", D: "₹28,500" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 352,
+  text: "The cost price of an article is 72% of the marked price. The profit percentage after allowing a discount of 6% on the marked price is (rounded off to 2 decimal places):",
+  options: { A: "32.50%", B: "28.23%", C: "30.56%", D: "35.65%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 353,
+  text: "A shopkeeper does a faulty weighing of an item of 930 gram instead of 1 kg and sells it at its cost price. Find his profit percentage on selling 15 kg of the item.",
+  options: { A: "8.79%", B: "5.21%", C: "7.53%", D: "6.49%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 354,
+  text: "Upon selling an article at 3/7 of the marked price, a loss of 30% is incurred. What is the ratio between the marked price and the cost price of the article?",
+  options: { A: "48 : 60", B: "49 : 30", C: "25 : 37", D: "50 : 80" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 355,
+  text: "A discount of 20% is given on the marked price of a cycle, and still there is a profit of 20%. If the profit is ₹800, find the marked price of the cycle.",
+  options: { A: "₹4,000", B: "₹5,800", C: "₹4,800", D: "₹6,000" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 356,
+  text: "A shopkeeper uses 940 gm weight in place of one kg weight. He sells it at 4% profit. What will be the actual profit percentage? (rounded off to two decimal places)",
+  options: { A: "9.25%", B: "10.32%", C: "10.64%", D: "10.96%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 357,
+  text: "If the selling price of an article is doubled, then the profit becomes four times. What was the original profit percentage?",
+  options: { A: "75%", B: "100%", C: "50%", D: "25%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 358,
+  text: "R lends some money to S on which S pays ₹17,000 more to R. S lends the same money to T, on which T pays 8.5% more to S. What should be the minimum amount (in ₹) that S must borrow so that he does not incur any loss in the process?",
+  options: { A: "2,00,000", B: "2,25,000", C: "1,80,000", D: "1,70,000" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 359,
+  text: "A seller professes to sell his fruits at cost price but still gains 5 5/19 %. How much does he give for 1 kg?",
+  options: { A: "905 gm", B: "5 gm", C: "900 gm", D: "950 gm" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 360,
+  text: "The cost price and selling price of rice are the same. Due to a faulty weighing machine, the seller earns a 15% profit. If Rs. x is the cost price of 1000 gm rice and the machine is changed which shows 1000 gm instead of 950 gm, what should be the selling price (in ₹) now to get the same percentage of profit?",
+  options: { A: "1.0295x", B: "1.0259x", C: "1.0925x", D: "1.0950x" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 361,
+  text: "A dishonest shopkeeper sells millet at ₹20 per kg which he has bought at ₹16 per kg and he is giving 800 gm instead of 1000 gm. Find his actual profit percentage.",
+  options: { A: "52.12%", B: "58.36%", C: "54.25%", D: "56.25%" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 362,
+  text: "A person marks his goods x% above the cost price and allows a discount of 12% on the marked price. If his profit is 10%, then the difference between x% and the profit percentage is:",
+  options: { A: "15%", B: "18%", C: "13%", D: "10%" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 363,
+  text: "R's weighing machine shows 400 gm when the actual weight is 350 gm. The cost price of almonds is ₹880 per kg and packets of 200 gm are made using the faulty machine. What should be the selling price (in ₹) of each packet to get a profit of 25%?",
+  options: { A: "197.50", B: "175.50", C: "182.50", D: "192.50" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 364,
+  text: "Ram bought a cell phone and paid 30% less than its original price. He sold it at 50% profit on the price he had paid. The percentage of profit earned by Ram on the original price was:",
+  options: { A: "25%", B: "50%", C: "15%", D: "5%" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 365,
+  text: "On selling a painting at Rs.1,498, the gain is 25% more than the loss incurred on selling it at Rs.1,300. In order to gain 25%, the selling price will be:",
+  options: { A: "Rs.1,735", B: "Rs.1,335", C: "Rs.1,755", D: "Rs.1,388" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 366,
+  text: "The cost price of milk has increased to ₹62 from ₹60. The milkman sold milk at 10% profit earlier. What is his profit% now if he sells milk at the same rate?",
+  options: { A: "5.46%", B: "6.54%", C: "6.45%", D: "5.64%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 367,
+  text: "A piece of land was sold to a person through two middlemen, each gaining 25%. If the person purchased the land for ₹6,25,000, the original cost (in ₹) of the land was:",
+  options: { A: "4,25,000", B: "4,00,000", C: "3,50,000", D: "3,75,000" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 368,
+  text: "A shopkeeper bought articles A and B for a total ₹2,540. He sold A at a gain of 15% and sold B at a loss of 25%. The selling price of A was ₹109 more than that of B. His profit or loss percentage in the entire transaction was (rounded off to one decimal place):",
+  options: { A: "Loss, 8.3%", B: "Profit, 8.3%", C: "Profit, 9.5%", D: "Loss, 9.5%" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 369,
+  text: "Muskan buys two kg of pulses for ₹400 and sells it for ₹440. She also uses the weight of 850 gm instead of 1 kg. What is Muskan's actual profit percentage?",
+  options: { A: "30%", B: "27%", C: "25.88%", D: "29.41%" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 370,
+  text: "A shopkeeper is purchasing goods from a wholesaler. The wholesaler is selling 1265 units of goods to the shopkeeper after gaining the sale price of 165 units of goods. What is the gain percentage of the wholesaler?",
+  options: { A: "15%", B: "20%", C: "25%", D: "18%" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 371,
+  text: "Mukesh sells almonds at the cost price but uses a false weight and thus gains a 23% profit. How many grams of almonds is he giving for 3.075 kg?",
+  options: { A: "2500", B: "2700", C: "2400", D: "2600" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 372,
+  text: "In a grocery shop, Samarth sold 950 g of sugar to a customer in place of 1 kg for ₹54. The cost price of 1 kg sugar was ₹36. How much profit (in ₹) did he earn on selling the sugar?",
+  options: { A: "16.2", B: "18.7", C: "20.2", D: "19.8" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 373,
+  text: "The marked price of a television set is ₹18,000. A shopkeeper allows a discount of 40% and gets a profit of 10%. What is the cost price of the television set?",
+  options: { A: "₹9,531", B: "₹8,181", C: "₹7,821", D: "₹9,818" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 374,
+  text: "A man earns a profit of 45 percent by selling a bike for a certain price. If he sells that bike at double the price, then what will be the profit percentage?",
+  options: { A: "80%", B: "180%", C: "90%", D: "190%" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 375,
+  text: "A person sold an article at a loss of 4%. Had he sold it at a gain of 1%, he would have received Rs.42.5 more. To gain 18%, what must be his selling price?",
+  options: { A: "Rs.756", B: "Rs.900", C: "Rs.1003", D: "Rs.850" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 376,
+  text: "A man buys 21 mangoes for a rupee. How many mangoes had he sold for a rupee so that there is a loss of 30 percent?",
+  options: { A: "30", B: "40", C: "35", D: "25" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 377,
+  text: "A dishonest shopkeeper sells sugar at a rate of Rs.45 per kg. The cost price of the sugar is Rs.40 per kg. Even after doing this, he tries to increase his profit by removing 100 gm from each packet of 1 kg. What is the gain percent of the shopkeeper?",
+  options: { A: "30%", B: "35%", C: "20%", D: "25%" },
+  correct_answer_index: 3,
+  year: null
+},
+{
+  question_number: 378,
+  text: "A dishonest shopkeeper pretends to sell his goods at cost price but uses false weights and gain 10%. How much false weight he is using instead 1 kg weight?",
+  options: { A: "909.09 gm", B: "900 gm", C: "920.30 gm", D: "911.12 gm" },
+  correct_answer_index: 0,
+  year: null
+},
+{
+  question_number: 379,
+  text: "If the selling price of 9 boxes is equal to the cost price of 15 boxes. The gain percent is (Selling price of all boxes is same. Cost price of all boxes is same):",
+  options: { A: "66.67%", B: "50%", C: "46.67%", D: "33.33%" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 380,
+  text: "Vijay sells bananas at the rate of Rs. 13 per dozen and earns a profit of 30 percent. The cost price of the bananas increases by 10 percent. If the selling price remains the same, then what is his new profit percent?",
+  options: { A: "16.66%", B: "18.18%", C: "14.28%", D: "12.5%" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 381,
+  text: "The difference between cost price and selling price is Rs. 143. If profit percentage is 26 percent, then what is the selling price?",
+  options: { A: "Rs. 603", B: "Rs. 676", C: "Rs. 693", D: "Rs. 713" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 382,
+  text: "The cost price of 50 articles is same as the selling price of x articles. If there is a profit of 25 percent, then what is the value of x? (Selling price of all articles is same. Cost price of all articles is same)",
+  options: { A: "20", B: "40", C: "30", D: "25" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 383,
+  text: "A person loses 20 percent on selling 80 pens for Rs. 40. What should be the selling price of 80 pens to earn a profit of 10 percent?",
+  options: { A: "Rs.80", B: "Rs.60", C: "Rs.55", D: "Rs.65" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 384,
+  text: "Shivam purchased two watches, first for Rs. 12000 and the second for Rs. 10000. He sold both the watches, first one at the profit of 10 percent and the second at a loss of 10 percent. What is the overall profit or loss?",
+  options: { A: "2.25 percent profit", B: "2.25 percent loss", C: "0.909 percent profit", D: "0.909 percent loss" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 385,
+  text: "A fruit seller sells 2/5th part of fruits at a profit of 10% and remaining at a loss of 5%. If the total profit is Rs.1850, then what is the total cost price of fruits?",
+  options: { A: "Rs.198000", B: "Rs.205000", C: "Rs.185000", D: "Rs.176000" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 386,
+  text: "A person earns a profit of 30 percent by selling an article for Rs. 325. How much percent should he increase his selling price to earn a profit of 40 percent?",
+  options: { A: "6.66%", B: "8.25%", C: "7.69%", D: "5.25%" },
+  correct_answer_index: 2,
+  year: null
+},
+{
+  question_number: 387,
+  text: "A shopkeeper sells a book at a loss of 60 percent. Had he sold the book for Rs. 150 more, then he would have suffered a loss of 30 percent. To earn a profit of 20 percent, what should be the selling price of the book?",
+  options: { A: "Rs. 650", B: "Rs. 600", C: "Rs. 700", D: "Rs. 550" },
+  correct_answer_index: 1,
+  year: null
+},
+{
+  question_number: 388,
+  text: "If 80 percent of total articles are sold at a loss of 25 percent and remaining articles are sold at a profit of 20 percent, then what will be the overall loss percentage?",
+  options: { A: "20%", B: "18%", C: "16%", D: "22%" },
+  correct_answer_index: 2,
+  year: null
+}
+]
 });
