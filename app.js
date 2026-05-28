@@ -5,6 +5,7 @@ let CHAPTERS = BASE_CHAPTERS.slice();
 
 const KEYS = ["A", "B", "C", "D"];
 const USER_CHAPTERS_STORAGE_KEY = "pyq:chapters:user";
+const PROGRESS_VERSION = 1;
 
 const appState = {
   view: "home",
@@ -19,7 +20,6 @@ const appState = {
   timerId: null,
   autoNextId: null,
   timeLimitMs: null,
-  // For mixed/custom mocks we may run against a synthetic chapter not stored in CHAPTERS.
   sessionChapter: null,
 };
 
@@ -344,6 +344,117 @@ function setView(view) {
   }
 }
 
+function isPersistentPractice() {
+  return (
+    appState.mode === "full" &&
+    !appState.timeLimitMs &&
+    appState.chapterId &&
+    appState.chapterId !== "mixed" &&
+    !!chapterById(appState.chapterId)
+  );
+}
+
+function cloneAnswer(answer) {
+  return {
+    selectedIndex: answer && Number.isInteger(answer.selectedIndex) ? answer.selectedIndex : null,
+    isSubmitted: !!(answer && answer.isSubmitted),
+    isCorrect: !!(answer && answer.isCorrect),
+    visited: !!(answer && answer.visited),
+    marked: !!(answer && answer.marked),
+    timeMs: Math.max(0, Number(answer && answer.timeMs) || 0),
+    startedAt: 0,
+  };
+}
+
+function progressKey(chapterId) {
+  return storageKey("progress", chapterId);
+}
+
+function saveProgress() {
+  if (!isPersistentPractice()) return;
+  const chapter = chapterById(appState.chapterId);
+  if (!chapter) return;
+  writeJson(progressKey(appState.chapterId), {
+    version: PROGRESS_VERSION,
+    chapterId: appState.chapterId,
+    totalQuestions: chapter.questions.length,
+    order: appState.order.slice(),
+    idx: appState.idx,
+    answers: appState.answers.map((answer, i) => {
+      const next = cloneAnswer(answer);
+      if (i === appState.idx && answer && answer.startedAt) {
+        next.timeMs += Math.max(0, Date.now() - answer.startedAt);
+      }
+      return next;
+    }),
+    elapsedMs: appState.elapsedMs,
+    updatedAt: Date.now(),
+  });
+}
+
+function loadProgress(chapterId) {
+  const chapter = chapterById(chapterId);
+  if (!chapter) return null;
+  const saved = readJson(progressKey(chapterId), null);
+  if (!saved || saved.version !== PROGRESS_VERSION || saved.chapterId !== chapterId) return null;
+  if (!Array.isArray(saved.order) || !Array.isArray(saved.answers)) return null;
+  if (saved.totalQuestions !== chapter.questions.length) return null;
+
+  const expectedOrder = chapter.questions.map((_, i) => i);
+  const isFullChapter =
+    saved.order.length === expectedOrder.length && saved.order.every((value, i) => value === expectedOrder[i]);
+  if (!isFullChapter) return null;
+
+  return {
+    order: expectedOrder,
+    idx: clampInt(saved.idx, 0, 0, Math.max(0, expectedOrder.length - 1)),
+    answers: expectedOrder.map((_, i) => cloneAnswer(saved.answers[i])),
+    elapsedMs: Math.max(0, Number(saved.elapsedMs) || 0),
+  };
+}
+
+function answeredProgress(chapterId) {
+  const chapter = chapterById(chapterId);
+  const saved = readJson(progressKey(chapterId), null);
+  if (!chapter || !saved || saved.version !== PROGRESS_VERSION || saved.totalQuestions !== chapter.questions.length) {
+    return null;
+  }
+  const answers = Array.isArray(saved.answers) ? saved.answers : [];
+  const completed = answers.filter((a) => a && a.isSubmitted && a.selectedIndex !== null).length;
+  return { completed, total: chapter.questions.length };
+}
+
+function currentQuestionElapsedMs() {
+  const answer = appState.answers[appState.idx];
+  if (!answer) return 0;
+  const activeMs = answer.startedAt ? Math.max(0, Date.now() - answer.startedAt) : 0;
+  return Math.max(0, (Number(answer.timeMs) || 0) + activeMs);
+}
+
+function renderTimerText() {
+  if (!el.qTimer) return;
+  const qTime = `Q Time ${formatDuration(currentQuestionElapsedMs())}`;
+  if (appState.timeLimitMs && Number.isFinite(appState.timeLimitMs)) {
+    const left = Math.max(0, appState.timeLimitMs - appState.elapsedMs);
+    el.qTimer.textContent = `Left ${formatDuration(left)} • ${qTime}`;
+    return;
+  }
+  el.qTimer.textContent = qTime;
+}
+
+function pauseCurrentQuestionTimer() {
+  const answer = appState.answers[appState.idx];
+  if (!answer || !answer.startedAt) return;
+  answer.timeMs += Math.max(0, Date.now() - answer.startedAt);
+  answer.startedAt = 0;
+}
+
+function startCurrentQuestionTimer() {
+  const answer = appState.answers[appState.idx];
+  if (!answer || answer.isSubmitted || answer.startedAt) return;
+  answer.startedAt = Date.now();
+}
+
 function makeNewSession(chapterId, order, mode) {
   const chapter = chapterById(chapterId);
   const total = chapter ? order.length : 0;
@@ -370,6 +481,20 @@ function makeNewSession(chapterId, order, mode) {
   startTimer();
 }
 
+function restoreSession(chapterId, saved) {
+  appState.chapterId = chapterId;
+  appState.mode = "full";
+  appState.timeLimitMs = null;
+  appState.sessionChapter = null;
+  appState.order = saved.order.slice();
+  appState.idx = saved.idx;
+  appState.answers = saved.answers.map(cloneAnswer);
+  appState.startedAt = Date.now();
+  appState.elapsedMs = saved.elapsedMs;
+  appState.lastTickAt = Date.now();
+  startTimer();
+}
+
 function startTimer() {
   stopTimer();
   appState.timerId = window.setInterval(() => {
@@ -378,17 +503,16 @@ function startTimer() {
     appState.elapsedMs += Math.max(0, now - appState.lastTickAt);
     appState.lastTickAt = now;
     if (appState.view === "practice") {
+      renderTimerText();
       if (appState.timeLimitMs && Number.isFinite(appState.timeLimitMs)) {
         const left = Math.max(0, appState.timeLimitMs - appState.elapsedMs);
-        el.qTimer.textContent = `Left ${formatDuration(left)}`;
         if (left <= 0) {
           // Auto-submit when time is over.
           finishSession();
           return;
         }
-      } else {
-        el.qTimer.textContent = `Time ${formatDuration(appState.elapsedMs)}`;
       }
+      saveProgress();
     }
     if (appState.view === "results") {
       el.timeValue.textContent = formatDuration(appState.elapsedMs);
@@ -403,10 +527,22 @@ function stopTimer() {
   }
 }
 
+function resumeSessionTimer() {
+  if (appState.timerId) return;
+  appState.startedAt = appState.startedAt || Date.now();
+  appState.lastTickAt = Date.now();
+  startTimer();
+}
+
 function ensureSessionForChapter(chapterId) {
   const chapter = chapterById(chapterId);
   if (!chapter) return;
   if (appState.chapterId !== chapterId || appState.order.length === 0) {
+    const saved = loadProgress(chapterId);
+    if (saved) {
+      restoreSession(chapterId, saved);
+      return;
+    }
     makeNewSession(
       chapterId,
       chapter.questions.map((_, i) => i),
@@ -523,8 +659,10 @@ function renderHome() {
   for (const chapter of CHAPTERS) {
     const best = readJson(storageKey("best", chapter.id), null);
     const last = readJson(storageKey("lastSession", chapter.id), null);
+    const progress = answeredProgress(chapter.id);
     const bestText = best ? `${Math.round(best.accuracy)}%` : "—";
     const lastText = last ? `${Math.round(last.accuracy)}%` : "—";
+    const progressText = progress ? ` • Done ${progress.completed}/${progress.total}` : "";
 
     const card = document.createElement("div");
     card.className = "card";
@@ -544,12 +682,12 @@ function renderHome() {
 
     const badge = document.createElement("div");
     badge.className = "badge";
-    badge.innerHTML = `${chapter.questions.length} Q • Best <strong>${bestText}</strong> • Last ${lastText}`;
+    badge.innerHTML = `${chapter.questions.length} Q • Best <strong>${bestText}</strong> • Last ${lastText}${progressText}`;
 
     const btn = document.createElement("button");
     btn.className = "btn btn--primary";
     btn.type = "button";
-    btn.textContent = "Start";
+    btn.textContent = progress && progress.completed > 0 ? "Resume" : "Start";
     btn.addEventListener("click", () => {
       // Fullscreen must be triggered by a user gesture.
       requestFullscreen();
@@ -601,9 +739,10 @@ function renderPalette(chapter) {
     btn.dataset.state = paletteStateFor(a);
     if (i === appState.idx) btn.classList.add("is-current");
     btn.addEventListener("click", () => {
+      pauseCurrentQuestionTimer();
       appState.idx = i;
-      const ans = appState.answers[appState.idx];
-      if (!ans.startedAt) ans.startedAt = Date.now();
+      startCurrentQuestionTimer();
+      saveProgress();
       renderPractice();
     });
     el.paletteList.appendChild(btn);
@@ -620,12 +759,7 @@ function renderPractice() {
   setView("practice");
   syncFullscreenUi();
   el.practiceChapterTitle.textContent = chapter.title;
-  if (appState.timeLimitMs && Number.isFinite(appState.timeLimitMs)) {
-    const left = Math.max(0, appState.timeLimitMs - appState.elapsedMs);
-    el.qTimer.textContent = `Left ${formatDuration(left)}`;
-  } else {
-    el.qTimer.textContent = `Time ${formatDuration(appState.elapsedMs)}`;
-  }
+  renderTimerText();
   clearAutoNext();
 
   const total = appState.order.length;
@@ -636,6 +770,7 @@ function renderPractice() {
   if (!info) return;
   const { question, answer } = info;
   answer.visited = true;
+  startCurrentQuestionTimer();
 
   const metaParts = [];
   metaParts.push(`Q${question.question_number}`);
@@ -725,13 +860,11 @@ function submitInstant(idx) {
   answer.selectedIndex = idx;
   answer.visited = true;
   answer.marked = false;
-
-  const startedAt = answer.startedAt || Date.now();
-  answer.timeMs += Math.max(0, Date.now() - startedAt);
-  answer.startedAt = 0;
+  pauseCurrentQuestionTimer();
 
   answer.isSubmitted = true;
   answer.isCorrect = idx === question.correct_answer_index;
+  saveProgress();
   renderPractice();
 }
 
@@ -744,32 +877,40 @@ function clearResponse() {
   answer.isSubmitted = false;
   answer.isCorrect = false;
   answer.marked = false;
+  answer.startedAt = Date.now();
+  saveProgress();
   renderPractice();
 }
 
 function goPrev() {
   if (appState.idx <= 0) return;
   clearAutoNext();
+  pauseCurrentQuestionTimer();
   appState.idx -= 1;
-  const ans = appState.answers[appState.idx];
-  if (!ans.startedAt) ans.startedAt = Date.now();
+  startCurrentQuestionTimer();
+  saveProgress();
   renderPractice();
 }
 
 function goNext() {
   const total = appState.order.length;
   if (appState.idx >= total - 1) {
+    pauseCurrentQuestionTimer();
+    saveProgress();
     window.location.hash = `#/results?chapter=${encodeURIComponent(appState.chapterId)}`;
     return;
   }
   clearAutoNext();
+  pauseCurrentQuestionTimer();
   appState.idx += 1;
-  const ans = appState.answers[appState.idx];
-  if (!ans.startedAt) ans.startedAt = Date.now();
+  startCurrentQuestionTimer();
+  saveProgress();
   renderPractice();
 }
 
 function finishSession() {
+  pauseCurrentQuestionTimer();
+  saveProgress();
   window.location.hash = `#/results?chapter=${encodeURIComponent(appState.chapterId)}`;
 }
 
@@ -909,6 +1050,7 @@ function retryWrong() {
   }
 
   const nextOrder = Array.from(new Set(wrongPositions));
+  pauseCurrentQuestionTimer();
   if (nextOrder.length === 0) {
     makeNewSession(
       chapter.id,
@@ -1096,11 +1238,17 @@ function attachHandlers() {
       e.preventDefault();
     }
   });
+
+  window.addEventListener("beforeunload", () => {
+    saveProgress();
+  });
 }
 
 function handleRoute() {
   const { route, params } = parseHash();
   if (route === "home") {
+    pauseCurrentQuestionTimer();
+    saveProgress();
     stopTimer();
     appState.timeLimitMs = null;
     appState.sessionChapter = null;
@@ -1109,6 +1257,8 @@ function handleRoute() {
   }
 
   if (route === "custom") {
+    pauseCurrentQuestionTimer();
+    saveProgress();
     stopTimer();
     renderCustom();
     return;
@@ -1117,18 +1267,22 @@ function handleRoute() {
   if (route === "practice") {
     const chapterId = params.chapter || "percentage";
     ensureSessionForChapter(chapterId);
+    resumeSessionTimer();
     if (params.pos) {
+      pauseCurrentQuestionTimer();
       const nextPos = Math.min(Math.max(0, Number(params.pos)), Math.max(0, appState.order.length - 1));
       appState.idx = Number.isFinite(nextPos) ? nextPos : 0;
     }
-    const ans = appState.answers[appState.idx];
-    if (!ans.startedAt) ans.startedAt = Date.now();
+    startCurrentQuestionTimer();
+    saveProgress();
     renderPractice();
     return;
   }
 
   if (route === "results") {
     const chapterId = params.chapter || appState.chapterId || "percentage";
+    pauseCurrentQuestionTimer();
+    saveProgress();
     ensureSessionForChapter(chapterId);
     renderResults();
     return;
