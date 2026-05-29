@@ -21,6 +21,7 @@ const appState = {
   autoNextId: null,
   timeLimitMs: null,
   sessionChapter: null,
+  isZoomed: false, // Tracks zoom state
 };
 
 const el = {
@@ -62,6 +63,7 @@ const el = {
   nextBtn: document.getElementById("nextBtn"),
   paletteList: document.getElementById("paletteList"),
   finishBtn: document.getElementById("finishBtn"),
+  zoomBtn: document.getElementById("zoomBtn"), // Added zoom button
 
   resultsChapterTitle: document.getElementById("resultsChapterTitle"),
   scoreValue: document.getElementById("scoreValue"),
@@ -165,7 +167,6 @@ function buildMixedChapter(selectedChapterIds) {
     for (const q of c.questions) {
       questions.push({
         ...q,
-        // keep an origin marker (useful later for analytics/UI if needed)
         _chapterId: c.id,
         _chapterTitle: c.title,
       });
@@ -508,7 +509,6 @@ function startTimer() {
       if (appState.timeLimitMs && Number.isFinite(appState.timeLimitMs)) {
         const left = Math.max(0, appState.timeLimitMs - appState.elapsedMs);
         if (left <= 0) {
-          // Auto-submit when time is over.
           finishSession();
           return;
         }
@@ -630,7 +630,6 @@ function startCustomMock() {
     return;
   }
 
-  // mixed
   const picked = Array.from(el.customChaptersChecks?.querySelectorAll('input[type="checkbox"]:checked') || []).map(
     (x) => x.value,
   );
@@ -690,7 +689,6 @@ function renderHome() {
     btn.type = "button";
     btn.textContent = progress && progress.completed > 0 ? "Resume" : "Start";
     btn.addEventListener("click", () => {
-      // Fullscreen must be triggered by a user gesture.
       requestFullscreen();
       window.location.hash = `#/practice?chapter=${encodeURIComponent(chapter.id)}`;
     });
@@ -779,6 +777,23 @@ function renderPractice() {
   if (appState.mode === "retryWrong") metaParts.push("Retry Wrong");
   el.qMeta.textContent = metaParts.join(" • ");
   el.qText.textContent = question.text;
+
+  // Apply zoom state
+  if (appState.isZoomed) {
+    el.qText.classList.add("is-zoomed");
+    if (el.zoomBtn) {
+      el.zoomBtn.classList.add("is-active");
+      const textSpan = el.zoomBtn.querySelector(".zoom-text");
+      if (textSpan) textSpan.textContent = "Unzoom";
+    }
+  } else {
+    el.qText.classList.remove("is-zoomed");
+    if (el.zoomBtn) {
+      el.zoomBtn.classList.remove("is-active");
+      const textSpan = el.zoomBtn.querySelector(".zoom-text");
+      if (textSpan) textSpan.textContent = "Zoom";
+    }
+  }
 
   const answeredCount = appState.answers.filter((a) => a.isSubmitted && a.selectedIndex !== null).length;
   const markedCount = appState.answers.filter((a) => a.marked).length;
@@ -1066,8 +1081,6 @@ function retryWrong() {
 }
 
 function attachHandlers() {
-  // Try to enter fullscreen whenever user navigates to practice via a click/tap.
-  // (Fullscreen API only works in a user gesture.)
   document.addEventListener(
     "click",
     (e) => {
@@ -1089,6 +1102,13 @@ function attachHandlers() {
   }
   if (el.customStartBtn) {
     el.customStartBtn.addEventListener("click", () => startCustomMock());
+  }
+
+  if (el.zoomBtn) {
+    el.zoomBtn.addEventListener("click", () => {
+      appState.isZoomed = !appState.isZoomed;
+      renderPractice();
+    });
   }
 
   el.prevBtn.addEventListener("click", goPrev);

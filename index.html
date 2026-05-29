@@ -4,43 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Primary Meta Tags for SEO -->
     <title>SSC CGL PYQs & Chapter Wise Mock Tests Practice</title>
     <meta name="title" content="SSC CGL PYQs & Chapter Wise Mock Tests Practice" />
     <meta name="description" content="Master your exam with free SSC CGL PYQs and chapter-wise mock tests. Customize your practice with mixed topics, set your own time limit, and improve your score today." />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="SSC CGL Practice" />
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://yourwebsite.com/" />
     <meta property="og:title" content="SSC CGL PYQs & Chapter Wise Mock Tests" />
     <meta property="og:description" content="Design perfect practice sessions with authentic SSC Previous Year Questions. Set custom times, pick chapters, and track your accuracy." />
     <meta property="og:image" content="./assets/ssc_logo.jpg" />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://yourwebsite.com/" />
     <meta property="twitter:title" content="SSC CGL PYQs & Chapter Wise Mock Tests" />
     <meta property="twitter:description" content="Design perfect practice sessions with authentic SSC Previous Year Questions. Set custom times, pick chapters, and track your accuracy." />
     <meta property="twitter:image" content="./assets/ssc_logo.jpg" />
 
-    <!-- Favicon & PWA -->
     <link rel="icon" type="image/jpeg" href="./assets/ssc_logo.jpg" />
     <link rel="apple-touch-icon" href="./assets/ssc_logo.jpg" />
     <link rel="manifest" href="./manifest.json" />
     <meta name="theme-color" content="#1e40af" />
     
-    <!-- Fonts & CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
     
-    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6159948931415074" crossorigin="anonymous"></script>
 
-    <!-- Schema.org Structured Data for Rich Snippets -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -79,7 +72,6 @@
 
     <main class="shell" id="app" role="main">
       <section class="view" data-view="home" aria-label="Home">
-        <!-- Hero Section -->
         <div class="hero">
           <div class="hero__content">
             <div class="hero__badge">
@@ -89,7 +81,6 @@
               <span>100% Free PYQ Platform</span>
             </div>
             
-            <!-- Optimized H1 for primary target keywords -->
             <h1 class="hero__title">SSC PYQs: Custom & Chapter Wise Mock Tests</h1>
             
             <p class="hero__desc">
@@ -211,7 +202,6 @@
         </div>
 
         <div class="pagehead">
-          <!-- Converted to H2 since H1 should only appear once at the top of the hierarchy -->
           <h2 class="pagehead__title">Select Chapter for Practice</h2>
           <div class="pagehead__meta" id="homeMeta"></div>
         </div>
@@ -288,7 +278,6 @@
       </section>
 
       <section class="view" data-view="practice" aria-label="Practice" hidden>
-        <!-- Exam View Container (Remaining identical to your original structure) -->
         <div class="exam">
           <div class="exam__bar">
             <div class="exam__barLeft">
@@ -312,6 +301,20 @@
             <div class="workspace" role="group" aria-label="Question">
               <div class="qhead">
                 <div class="qmeta mono" id="qMeta"></div>
+                <button class="btn btn--xs btn--soft btn--zoom" id="zoomBtn" type="button" aria-label="Toggle Zoom">
+                  <svg class="icon-zoom-in" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                  <svg class="icon-zoom-out" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                  <span class="zoom-text">Zoom</span>
+                </button>
               </div>
               <div class="qtext" id="qText"></div>
               <div class="opts" id="options"></div>
@@ -400,8 +403,6 @@
       </section>
     </main>
 
-    <!-- Fallback Content for Crawlers & Users without JavaScript -->
-    <!-- Essential for SEO so Google knows exactly what content is inside the JavaScript app -->
     <noscript>
       <div style="padding: 20px;">
         <h2>SSC CGL Chapter-wise Practice Questions (PYQs)</h2>
@@ -439,8 +440,5 @@
     <script src="./chapters/Time-and-work.js"></script>
     <script src="./chapters/Partnership.js"></script>
     <script src="./app.js"></script>
-    
-    <!-- Ad Blocker Detection -->
-    <!-- <script src="./adblock-detector.js"></script> -->
   </body>
 </html>

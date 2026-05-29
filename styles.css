@@ -703,6 +703,14 @@ body {
   background: var(--soft);
 }
 
+.btn--zoom.is-active .icon-zoom-in {
+  display: none;
+}
+
+.btn--zoom.is-active .icon-zoom-out {
+  display: block !important;
+}
+
 .link {
   text-decoration: none;
   color: var(--accent);
@@ -806,7 +814,7 @@ body {
 
 .qhead {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
@@ -821,6 +829,12 @@ body {
   font-size: 15px;
   line-height: 1.6;
   color: var(--text);
+  transition: font-size 0.2s ease, line-height 0.2s ease;
+}
+
+.qtext.is-zoomed {
+  font-size: 22px;
+  line-height: 1.7;
 }
 
 .opts {
