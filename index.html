@@ -17,6 +17,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6159948931415074"
+         crossorigin="anonymous"></script>
   </head>
   <body>
     <header class="topbar" role="banner">
@@ -37,6 +41,21 @@
     </header>
 
     <main class="shell" id="app" role="main">
+      <!-- Ad Slot: Top Banner (Home Page) -->
+      <div class="ad-container ad-banner" id="adTopBanner">
+        <!-- Google AdSense Ad Unit -->
+        <!-- <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script> -->
+        <div class="ad-placeholder">Advertisement</div>
+      </div>
+
       <section class="view" data-view="home" aria-label="Home">
         <div class="pagehead">
           <h1 class="pagehead__title">Chapterwise Practice</h1>
@@ -48,6 +67,20 @@
             <div class="panel__meta">Select a chapter to start</div>
           </div>
           <div class="chapters" id="chapterGrid"></div>
+        </div>
+
+        <!-- Ad Slot: Below Chapters -->
+        <div class="ad-container ad-rectangle" id="adBelowChapters">
+          <!-- Google AdSense Ad Unit -->
+          <!-- <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="XXXXXXXXXX"
+               data-ad-format="rectangle"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script> -->
+          <div class="ad-placeholder">Advertisement</div>
         </div>
       </section>
 
@@ -115,6 +148,11 @@
       </section>
 
       <section class="view" data-view="practice" aria-label="Practice" hidden>
+        <!-- Ad Slot: Top of Practice (Optional - can be intrusive) -->
+        <!-- <div class="ad-container ad-banner-small" id="adPracticeTop">
+          <div class="ad-placeholder">Advertisement</div>
+        </div> -->
+
         <div class="exam">
           <div class="exam__bar">
             <div class="exam__barLeft">
@@ -193,6 +231,21 @@
             </div>
           </div>
 
+          <!-- Ad Slot: After Results Header -->
+          <div class="ad-container ad-banner" id="adResultsTop">
+            <!-- Google AdSense Ad Unit -->
+            <!-- <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script> -->
+            <div class="ad-placeholder">Advertisement</div>
+          </div>
+
           <div class="summary">
             <div class="kpi">
               <div class="kpi__k">Score</div>
@@ -221,6 +274,20 @@
               <div class="panel__meta" id="reviewMeta"></div>
             </div>
             <div class="review" id="reviewList"></div>
+          </div>
+
+          <!-- Ad Slot: Bottom of Results -->
+          <div class="ad-container ad-rectangle" id="adResultsBottom">
+            <!-- Google AdSense Ad Unit -->
+            <!-- <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="rectangle"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script> -->
+            <div class="ad-placeholder">Advertisement</div>
           </div>
         </div>
       </section>

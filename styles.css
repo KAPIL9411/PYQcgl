@@ -904,3 +904,68 @@ body {
     grid-column: span 12;
   }
 }
+
+/* Ad Container Styles */
+.ad-container {
+  margin: 16px auto;
+  text-align: center;
+  background: var(--soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.ad-banner {
+  max-width: 100%;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-banner-small {
+  max-width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-rectangle {
+  max-width: 336px;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ad-placeholder {
+  padding: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Hide ad placeholder when actual ads load */
+.ad-container ins.adsbygoogle[data-ad-status="filled"] ~ .ad-placeholder {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ad-rectangle {
+    max-width: 300px;
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ad-banner {
+    min-height: 50px;
+  }
+  
+  .ad-rectangle {
+    max-width: 100%;
+    min-height: 200px;
+  }
+}
