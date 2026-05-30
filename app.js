@@ -741,7 +741,9 @@ function clearAutoNext() {
 function paletteStateFor(answer) {
   if (!answer.visited) return "nv";
   if (answer.marked) return "mr";
-  if (answer.isSubmitted && answer.selectedIndex !== null) return "ans";
+  if (answer.isSubmitted && answer.selectedIndex !== null) {
+    return answer.isCorrect ? "ans" : "ans-bad"; 
+  }
   return "na";
 }
 

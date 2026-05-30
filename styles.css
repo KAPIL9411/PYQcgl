@@ -1275,3 +1275,15 @@ body {
 .pbtn[data-state="mr"].is-bookmarked .bmark-star {
   color: #ffdf00; 
 }
+
+/* --- Wrong Answer Styling in Question Palette --- */
+.pbtn[data-state="ans-bad"] {
+  background: rgba(217, 48, 37, 0.92); /* Red */
+  border-color: rgba(217, 48, 37, 0.92);
+  color: #fff;
+}
+
+/* Ensure the bookmark star remains bright yellow on the red background */
+.pbtn[data-state="ans-bad"].is-bookmarked .bmark-star {
+  color: #ffdf00; 
+}
