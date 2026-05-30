@@ -21,7 +21,7 @@ const appState = {
   autoNextId: null,
   timeLimitMs: null,
   sessionChapter: null,
-  isZoomed: false, // Tracks zoom state
+  isZoomed: false, 
 };
 
 const el = {
@@ -63,7 +63,7 @@ const el = {
   nextBtn: document.getElementById("nextBtn"),
   paletteList: document.getElementById("paletteList"),
   finishBtn: document.getElementById("finishBtn"),
-  zoomBtn: document.getElementById("zoomBtn"), // Added zoom button
+  zoomBtn: document.getElementById("zoomBtn"), 
 
   resultsChapterTitle: document.getElementById("resultsChapterTitle"),
   scoreValue: document.getElementById("scoreValue"),
@@ -209,6 +209,27 @@ function slugify(value) {
     .replace(/['"]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+// --- Bookmark Helpers ---
+function getBookmarks(chapterId) {
+  return readJson(`pyq:bookmarks:${chapterId}`, []);
+}
+
+function toggleBookmark(chapterId, globalIndex) {
+  const bookmarks = getBookmarks(chapterId);
+  const idx = bookmarks.indexOf(globalIndex);
+  if (idx > -1) {
+    bookmarks.splice(idx, 1); // Remove if exists
+  } else {
+    bookmarks.push(globalIndex); // Add if doesn't exist
+  }
+  writeJson(`pyq:bookmarks:${chapterId}`, bookmarks);
+  renderPractice(); // Re-render to update the icon
+}
+
+function isBookmarked(chapterId, globalIndex) {
+  return getBookmarks(chapterId).includes(globalIndex);
 }
 
 function loadUserChapters() {
@@ -734,7 +755,20 @@ function renderPalette(chapter) {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "pbtn";
-    btn.textContent = String(q.question_number);
+    
+    // --- Bookmark Palette Logic ---
+    const bookmarked = isBookmarked(chapter.id, globalIndex);
+    
+    // Add a star and the number if bookmarked, otherwise just the number
+    btn.innerHTML = bookmarked 
+      ? `<span class="bmark-star">★</span> ${q.question_number}` 
+      : String(q.question_number);
+    
+    if (bookmarked) {
+      btn.classList.add("is-bookmarked");
+    }
+    // ------------------------------
+
     btn.dataset.state = paletteStateFor(a);
     if (i === appState.idx) btn.classList.add("is-current");
     btn.addEventListener("click", () => {
@@ -767,18 +801,35 @@ function renderPractice() {
 
   const info = currentQuestionInfo();
   if (!info) return;
-  const { question, answer } = info;
+  const { globalIndex, question, answer } = info;
   answer.visited = true;
   startCurrentQuestionTimer();
 
+  // Create Meta tags
   const metaParts = [];
   metaParts.push(`Q${question.question_number}`);
   if (question.year) metaParts.push(`Year ${question.year}`);
   if (appState.mode === "retryWrong") metaParts.push("Retry Wrong");
-  el.qMeta.textContent = metaParts.join(" • ");
+
+  // Dynamic Header for Meta + Bookmark
+  el.qMeta.innerHTML = ''; 
+  const metaText = document.createElement('span');
+  metaText.textContent = metaParts.join(" • ");
+  el.qMeta.appendChild(metaText);
+
+  // Bookmark Button Logic
+  const bookmarked = isBookmarked(appState.chapterId, globalIndex);
+  const bBtn = document.createElement('button');
+  bBtn.className = `btn btn--xs ${bookmarked ? 'btn--primary' : 'btn--soft'}`;
+  bBtn.style.marginLeft = "10px";
+  bBtn.innerHTML = bookmarked ? '★ Bookmarked' : '☆ Bookmark';
+  bBtn.onclick = () => toggleBookmark(appState.chapterId, globalIndex);
+  el.qMeta.appendChild(bBtn);
+
+  // Update Question Text
   el.qText.textContent = question.text;
 
-  // Apply zoom state
+  // Apply Zoom State
   if (appState.isZoomed) {
     el.qText.classList.add("is-zoomed");
     if (el.zoomBtn) {

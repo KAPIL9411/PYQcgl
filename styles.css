@@ -812,17 +812,28 @@ body {
   padding: 14px;
 }
 
+/* Updated qhead & qmeta Layout */
 .qhead {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
 .qmeta {
+  display: flex; 
+  align-items: center; 
+  gap: 10px;
+  flex-wrap: wrap;
   font-size: 12.5px;
   color: var(--muted);
+}
+
+.qmeta button {
+  flex-shrink: 0;
+  margin-left: 10px;
 }
 
 .qtext {
@@ -1241,4 +1252,26 @@ body {
   .chip {
     grid-column: span 12;
   }
+}
+
+/* --- Bookmark Styling in Question Palette --- */
+
+/* Add a bright gold border to bookmarked questions */
+.pbtn.is-bookmarked {
+  border-width: 2px !important;
+  border-color: #f59e0b !important; /* Gold/Orange */
+}
+
+/* Style the star icon */
+.bmark-star {
+  color: #f59e0b;
+  font-size: 10px;
+  margin-right: 1px;
+}
+
+/* If the question is answered (green) or unanswered (red), make the star bright yellow so it's easy to read on dark backgrounds */
+.pbtn[data-state="ans"].is-bookmarked .bmark-star,
+.pbtn[data-state="na"].is-bookmarked .bmark-star,
+.pbtn[data-state="mr"].is-bookmarked .bmark-star {
+  color: #ffdf00; 
 }
