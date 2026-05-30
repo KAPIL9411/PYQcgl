@@ -78,7 +78,7 @@ window.BASE_CHAPTERS.push({
     question_number: 11,
     text: "The mean proportional of 8a^2 and 18/a^4 , where a is a positive number, is ____.",
     options: { A: "12/a", B: "12a", C: "12a^2", D: "12/a^2" },
-    correct_answer_index: 3,
+    correct_answer_index: 0,
     year: null,
   },
   {
