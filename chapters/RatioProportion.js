@@ -90,7 +90,7 @@ window.BASE_CHAPTERS.push({
   },
   {
     question_number: 13,
-    text: "Find the fourth proportion of the following numbers: 4/3 rd of 27, 3/5 th of 30, 3/7 th of 35.",
+    text: "Find the fourth proportion of the following numbers: 1/3 rd of 27, 4/5 th of 30, 3/7 th of 35.",
     options: { A: "35", B: "40", C: "45", D: "38" },
     correct_answer_index: 1,
     year: null,
