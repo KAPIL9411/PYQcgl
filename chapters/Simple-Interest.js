@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Simple-Interest",
   title: "Simple Interest",
   desc: "SSC CGL PYQs focused on Simple Interest.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

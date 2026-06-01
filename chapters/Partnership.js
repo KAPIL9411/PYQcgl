@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Partnership",
   title: "Partnership",
   desc: "SSC CGL PYQs focused on Partnership.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

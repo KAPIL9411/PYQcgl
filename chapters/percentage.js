@@ -5,6 +5,7 @@ window.BASE_CHAPTERS.push(
     id: "percentage",
     title: "Percentage",
     desc: "SSC CGL PYQs focused on percentage concepts.",
+    subject: "maths",
     questions: [
       {
         question_number: 1,

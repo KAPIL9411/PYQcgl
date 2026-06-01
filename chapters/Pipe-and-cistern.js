@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Pipe-and-cistern",
   title: "Pipe and Cistern",
   desc: "SSC CGL PYQs focused on Pipe and Cistern.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

@@ -674,52 +674,86 @@ function startCustomMock() {
 
 function renderHome() {
   setView("home");
-  el.homeMeta.textContent = homeStatsText();
-  el.chapterGrid.innerHTML = "";
-
-  for (const chapter of CHAPTERS) {
-    const best = readJson(storageKey("best", chapter.id), null);
-    const last = readJson(storageKey("lastSession", chapter.id), null);
-    const progress = answeredProgress(chapter.id);
-    const bestText = best ? `${Math.round(best.accuracy)}%` : "—";
-    const lastText = last ? `${Math.round(last.accuracy)}%` : "—";
-    const progressText = progress ? ` • Done ${progress.completed}/${progress.total}` : "";
-
-    const card = document.createElement("div");
-    card.className = "card";
-
-    const h = document.createElement("h3");
-    h.className = "card__title";
-    h.textContent = chapter.title;
-    card.appendChild(h);
-
-    const p = document.createElement("p");
-    p.className = "card__desc";
-    p.textContent = chapter.desc;
-    card.appendChild(p);
-
-    const row = document.createElement("div");
-    row.className = "card__row";
-
-    const badge = document.createElement("div");
-    badge.className = "badge";
-    badge.innerHTML = `${chapter.questions.length} Q • Best <strong>${bestText}</strong> • Last ${lastText}${progressText}`;
-
-    const btn = document.createElement("button");
-    btn.className = "btn btn--primary";
-    btn.type = "button";
-    btn.textContent = progress && progress.completed > 0 ? "Resume" : "Start";
-    btn.addEventListener("click", () => {
-      requestFullscreen();
-      window.location.hash = `#/practice?chapter=${encodeURIComponent(chapter.id)}`;
-    });
-
-    row.appendChild(badge);
-    row.appendChild(btn);
-    card.appendChild(row);
-
-    el.chapterGrid.appendChild(card);
+  
+  // Update subject stats
+  const mathsStats = getSubjectStats('maths');
+  const reasoningStats = getSubjectStats('reasoning');
+  const englishStats = getSubjectStats('english');
+  
+  const mathsStatsEl = document.getElementById('mathsStats');
+  const reasoningStatsEl = document.getElementById('reasoningStats');
+  const englishStatsEl = document.getElementById('englishStats');
+  const homeMeta = document.getElementById('homeMeta');
+  
+  if (homeMeta) {
+    const totalChapters = mathsStats.chapters + reasoningStats.chapters + englishStats.chapters;
+    const totalQuestions = mathsStats.questions + reasoningStats.questions + englishStats.questions;
+    const totalAttempted = mathsStats.attempted + reasoningStats.attempted + englishStats.attempted;
+    homeMeta.textContent = `${totalChapters} Chapters • ${totalQuestions} Questions • ${totalAttempted} Attempted`;
   }
+  
+  if (mathsStatsEl) {
+    mathsStatsEl.innerHTML = `
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${mathsStats.chapters}</span>
+        <span class="subject-card__stat-label">Chapters</span>
+      </div>
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${mathsStats.questions}</span>
+        <span class="subject-card__stat-label">Questions</span>
+      </div>
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${mathsStats.attempted}</span>
+        <span class="subject-card__stat-label">Attempted</span>
+      </div>
+    `;
+  }
+  
+  if (reasoningStatsEl) {
+    reasoningStatsEl.innerHTML = `
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${reasoningStats.chapters}</span>
+        <span class="subject-card__stat-label">Chapters</span>
+      </div>
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${reasoningStats.questions}</span>
+        <span class="subject-card__stat-label">Questions</span>
+      </div>
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${reasoningStats.attempted}</span>
+        <span class="subject-card__stat-label">Attempted</span>
+      </div>
+    `;
+  }
+  
+  if (englishStatsEl) {
+    englishStatsEl.innerHTML = `
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${englishStats.chapters}</span>
+        <span class="subject-card__stat-label">Chapters</span>
+      </div>
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${englishStats.questions}</span>
+        <span class="subject-card__stat-label">Questions</span>
+      </div>
+      <div class="subject-card__stat">
+        <span class="subject-card__stat-value">${englishStats.attempted}</span>
+        <span class="subject-card__stat-label">Attempted</span>
+      </div>
+    `;
+  }
+  
+  // Setup subject card click handlers
+  const subjectCards = document.querySelectorAll('.subject-card');
+  subjectCards.forEach(card => {
+    const btn = card.querySelector('.subject-card__btn');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const subject = card.dataset.subject;
+        window.location.hash = `#/subject?name=${subject}`;
+      });
+    }
+  });
 }
 
 function currentQuestionInfo() {
@@ -1330,6 +1364,14 @@ function handleRoute() {
     return;
   }
 
+  if (route === "subject") {
+    pauseCurrentQuestionTimer();
+    saveProgress();
+    stopTimer();
+    renderSubject();
+    return;
+  }
+
   if (route === "custom") {
     pauseCurrentQuestionTimer();
     saveProgress();
@@ -1369,3 +1411,94 @@ refreshChapters();
 attachHandlers();
 window.addEventListener("hashchange", handleRoute);
 handleRoute();
+
+
+// ============================================
+// SUBJECT FUNCTIONALITY
+// ============================================
+
+// Get chapters by subject
+function getChaptersBySubject(subject) {
+  return CHAPTERS.filter(c => c.subject === subject);
+}
+
+// Get subject stats
+function getSubjectStats(subject) {
+  const chapters = getChaptersBySubject(subject);
+  const totalQ = chapters.reduce((a, c) => a + c.questions.length, 0);
+  const attempted = chapters.filter(c => !!readJson(storageKey("best", c.id), null)).length;
+  return { chapters: chapters.length, questions: totalQ, attempted };
+}
+
+// Render subject view
+function renderSubject() {
+  const { params } = parseHash();
+  const subject = params.name || 'maths';
+  const chapters = getChaptersBySubject(subject);
+  
+  setView("subject");
+  
+  const subjectTitle = document.getElementById('subjectTitle');
+  const subjectPanelTitle = document.getElementById('subjectPanelTitle');
+  const subjectMeta = document.getElementById('subjectMeta');
+  const chapterGrid = document.getElementById('chapterGrid');
+  
+  const displayNames = {
+    'maths': 'Quantitative Aptitude',
+    'reasoning': 'Reasoning Ability',
+    'english': 'English Language'
+  };
+  const displayName = displayNames[subject] || 'Chapters';
+  
+  if (subjectTitle) subjectTitle.textContent = displayName;
+  if (subjectPanelTitle) subjectPanelTitle.textContent = `${displayName} Chapters`;
+  if (subjectMeta) subjectMeta.textContent = `${chapters.length} chapters • ${chapters.reduce((a, c) => a + c.questions.length, 0)} questions`;
+  
+  if (chapterGrid) {
+    chapterGrid.innerHTML = "";
+    
+    for (const chapter of chapters) {
+      const best = readJson(storageKey("best", chapter.id), null);
+      const last = readJson(storageKey("lastSession", chapter.id), null);
+      const progress = answeredProgress(chapter.id);
+      const bestText = best ? `${Math.round(best.accuracy)}%` : "—";
+      const lastText = last ? `${Math.round(last.accuracy)}%` : "—";
+      const progressText = progress ? ` • Done ${progress.completed}/${progress.total}` : "";
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const h = document.createElement("h3");
+      h.className = "card__title";
+      h.textContent = chapter.title;
+      card.appendChild(h);
+
+      const p = document.createElement("p");
+      p.className = "card__desc";
+      p.textContent = chapter.desc;
+      card.appendChild(p);
+
+      const row = document.createElement("div");
+      row.className = "card__row";
+
+      const badge = document.createElement("div");
+      badge.className = "badge";
+      badge.innerHTML = `${chapter.questions.length} Q • Best <strong>${bestText}</strong> • Last ${lastText}${progressText}`;
+
+      const btn = document.createElement("button");
+      btn.className = "btn btn--primary";
+      btn.type = "button";
+      btn.textContent = progress && progress.completed > 0 ? "Resume" : "Start";
+      btn.addEventListener("click", () => {
+        requestFullscreen();
+        window.location.hash = `#/practice?chapter=${encodeURIComponent(chapter.id)}`;
+      });
+
+      row.appendChild(badge);
+      row.appendChild(btn);
+      card.appendChild(row);
+
+      chapterGrid.appendChild(card);
+    }
+  }
+}

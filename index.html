@@ -31,8 +31,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6159948931415074" crossorigin="anonymous"></script>
 
     <script type="application/ld+json">
     {
@@ -72,143 +70,152 @@
 
     <main class="shell" id="app" role="main">
       <section class="view" data-view="home" aria-label="Home">
-        <div class="hero">
-          <div class="hero__content">
-            <div class="hero__badge">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M8 1L10.163 5.38197L15 6.12115L11.5 9.52786L12.326 14.3607L8 12.082L3.674 14.3607L4.5 9.52786L1 6.12115L5.837 5.38197L8 1Z" fill="currentColor"/>
-              </svg>
-              <span>100% Free PYQ Platform</span>
-            </div>
-            
-            <h1 class="hero__title">SSC PYQs: Custom & Chapter Wise Mock Tests</h1>
-            
-            <p class="hero__desc">
-              Design your perfect practice session using authentic SSC Previous Year Questions. 
-              Choose specific chapters, mix multiple topics, and build custom timed mock tests tailored for your CGL preparation.
-            </p>
-
-            <div class="hero__features">
-              <div class="hero__feature">
-                <div class="hero__feature-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2Z" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M10 6V10L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                </div>
-                <div class="hero__feature-text">
-                  <div class="hero__feature-title">Custom Time</div>
-                  <div class="hero__feature-sub">Set your own duration</div>
-                </div>
-              </div>
-
-              <div class="hero__feature">
-                <div class="hero__feature-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 6H17M3 10H17M3 14H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                </div>
-                <div class="hero__feature-text">
-                  <div class="hero__feature-title">Chapter-wise Test</div>
-                  <div class="hero__feature-sub">Focus on one topic</div>
-                </div>
-              </div>
-
-              <div class="hero__feature">
-                <div class="hero__feature-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 4L8 8M8 8L4 12M8 8H16M12 4L16 8M16 8L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                </div>
-                <div class="hero__feature-text">
-                  <div class="hero__feature-title">Mixed Chapters</div>
-                  <div class="hero__feature-sub">Combine multiple topics</div>
-                </div>
-              </div>
-
-              <div class="hero__feature">
-                <div class="hero__feature-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 2L11.163 6.38197L16 7.12115L12.5 10.5279L13.326 15.3607L9 13.082L4.674 15.3607L5.5 10.5279L2 7.12115L6.837 6.38197L9 2Z" stroke="currentColor" stroke-width="1.5"/>
-                  </svg>
-                </div>
-                <div class="hero__feature-text">
-                  <div class="hero__feature-title">Any Question Count</div>
-                  <div class="hero__feature-sub">From 1 to 1000 questions</div>
-                </div>
-              </div>
-            </div>
-
-            <a href="#/custom" class="hero__cta">
-              <span>Create Custom Mock</span>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+        <div class="home-hero">
+          <div class="home-hero__badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+            </svg>
+            <span>100% Free • Authentic PYQs</span>
           </div>
+          <h1 class="home-hero__title">Master SSC CGL with<br/>Previous Year Questions</h1>
+          <p class="home-hero__desc">Practice chapter-wise or create custom mock tests. Track your progress and improve your score.</p>
+          <div class="home-hero__stats" id="homeMeta"></div>
+        </div>
 
-          <div class="hero__visual" aria-hidden="true">
-            <div class="hero__card hero__card--1">
-              <div class="hero__card-header">
-                <div class="hero__card-icon">📊</div>
-                <div class="hero__card-title">Chapter-wise Test</div>
-              </div>
-              <div class="hero__card-body">
-                <div class="hero__card-stat">
-                  <span class="hero__card-label">Questions</span>
-                  <span class="hero__card-value">25</span>
+        <div class="subjects-container">
+          <h2 class="subjects-heading">Choose Your Subject</h2>
+          <div class="subjects-grid">
+            <div class="subject-card" data-subject="maths">
+              <div class="subject-card__header">
+                <div class="subject-card__icon subject-card__icon--blue">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 7H7V9H9V7Z" fill="currentColor"/>
+                    <path d="M13 7H11V9H13V7Z" fill="currentColor"/>
+                    <path d="M9 11H7V13H9V11Z" fill="currentColor"/>
+                    <path d="M13 11H11V13H13V11Z" fill="currentColor"/>
+                    <path d="M9 15H7V17H9V15Z" fill="currentColor"/>
+                    <path d="M13 15H11V17H13V15Z" fill="currentColor"/>
+                    <rect x="15" y="7" width="2" height="2" fill="currentColor"/>
+                    <rect x="15" y="11" width="2" height="2" fill="currentColor"/>
+                    <rect x="15" y="15" width="2" height="2" fill="currentColor"/>
+                    <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
-                <div class="hero__card-stat">
-                  <span class="hero__card-label">Time</span>
-                  <span class="hero__card-value">15 min</span>
-                </div>
+                <h3 class="subject-card__title">Quantitative Aptitude</h3>
               </div>
+              <p class="subject-card__desc">Master numerical ability, arithmetic, and mathematical reasoning with chapter-wise practice</p>
+              <div class="subject-card__stats" id="mathsStats"></div>
+              <button class="btn btn--primary subject-card__btn" type="button">
+                <span>Start Practice</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
             </div>
 
-            <div class="hero__card hero__card--2">
-              <div class="hero__card-header">
-                <div class="hero__card-icon">🎯</div>
-                <div class="hero__card-title">Mixed Test</div>
-              </div>
-              <div class="hero__card-body">
-                <div class="hero__card-stat">
-                  <span class="hero__card-label">Chapters</span>
-                  <span class="hero__card-value">5</span>
+            <div class="subject-card" data-subject="reasoning">
+              <div class="subject-card__header">
+                <div class="subject-card__icon subject-card__icon--purple">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="currentColor"/>
+                  </svg>
                 </div>
-                <div class="hero__card-stat">
-                  <span class="hero__card-label">Questions</span>
-                  <span class="hero__card-value">50</span>
-                </div>
+                <h3 class="subject-card__title">Reasoning Ability</h3>
               </div>
+              <p class="subject-card__desc">Enhance logical reasoning, analytical thinking, and problem-solving skills effectively</p>
+              <div class="subject-card__stats" id="reasoningStats"></div>
+              <button class="btn btn--primary subject-card__btn" type="button">
+                <span>Start Practice</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
             </div>
 
-            <div class="hero__card hero__card--3">
-              <div class="hero__card-header">
-                <div class="hero__card-icon">⚡</div>
-                <div class="hero__card-title">Quick Practice</div>
-              </div>
-              <div class="hero__card-body">
-                <div class="hero__card-stat">
-                  <span class="hero__card-label">Questions</span>
-                  <span class="hero__card-value">10</span>
+            <div class="subject-card" data-subject="english">
+              <div class="subject-card__header">
+                <div class="subject-card__icon subject-card__icon--green">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </div>
-                <div class="hero__card-stat">
-                  <span class="hero__card-label">Time</span>
-                  <span class="hero__card-value">5 min</span>
-                </div>
+                <h3 class="subject-card__title">English Language</h3>
               </div>
+              <p class="subject-card__desc">Improve grammar, vocabulary, comprehension, and writing skills for better scores</p>
+              <div class="subject-card__stats" id="englishStats"></div>
+              <button class="btn btn--primary subject-card__btn" type="button">
+                <span>Start Practice</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
 
+        <div class="features-section">
+          <div class="feature-card">
+            <div class="feature-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h4 class="feature-card__title">Custom Time Limits</h4>
+            <p class="feature-card__desc">Set your own duration for practice sessions</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 11L12 14L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 12V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4 class="feature-card__title">Chapter-wise Tests</h4>
+            <p class="feature-card__desc">Focus on specific topics you want to master</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4 class="feature-card__title">Mixed Chapter Tests</h4>
+            <p class="feature-card__desc">Combine multiple topics for comprehensive practice</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3V21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18 9L13 14L9 10L3 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h4 class="feature-card__title">Track Progress</h4>
+            <p class="feature-card__desc">Monitor your performance and improvement</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subject Chapters View -->
+      <section class="view" data-view="subject" aria-label="Subject Chapters" hidden>
         <div class="pagehead">
-          <h2 class="pagehead__title">Select Chapter for Practice</h2>
-          <div class="pagehead__meta" id="homeMeta"></div>
+          <div class="crumbs">
+            <a class="crumbs__link" href="#/home">Home</a>
+            <span class="crumbs__sep" aria-hidden="true">/</span>
+            <span class="crumbs__current" id="subjectTitle"></span>
+          </div>
         </div>
+
         <div class="panel">
           <div class="panel__head">
-            <div class="panel__title">Available Quants Chapters</div>
-            <div class="panel__meta">Select a chapter to start solving PYQs</div>
+            <div class="panel__title" id="subjectPanelTitle">Chapters</div>
+            <div class="panel__meta" id="subjectMeta"></div>
           </div>
           <div class="chapters" id="chapterGrid"></div>
         </div>
@@ -446,6 +453,17 @@
     <script src="./chapters/Pipe-and-cistern.js"></script>
     <script src="./chapters/Time-and-work.js"></script>
     <script src="./chapters/Partnership.js"></script>
+    
+    <!-- Reasoning Chapters -->
+    <script src="./chapters/Analogy.js"></script>
+    <script src="./chapters/Blood-Relations.js"></script>
+    <script src="./chapters/Coding-Decoding.js"></script>
+    
+    <!-- English Chapters -->
+    <script src="./chapters/Grammar.js"></script>
+    <script src="./chapters/Vocabulary.js"></script>
+    <script src="./chapters/Comprehension.js"></script>
+    
     <script src="./app.js"></script>
   </body>
 </html>

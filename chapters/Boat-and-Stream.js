@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Boat-and-Stream",
   title: "Boat and Stream",
   desc: "SSC CGL PYQs focused on Boat and Stream.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

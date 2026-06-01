@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Time and Work",
   title: "Time and Work",
   desc: "SSC CGL PYQs focused on Time and Work.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

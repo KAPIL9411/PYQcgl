@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Average",
   title: "Average",
   desc: "SSC CGL PYQs focused on Average.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

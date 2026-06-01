@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "RatioProportion",
   title: "Ratio and Proportion",
   desc: "SSC CGL PYQs focused on Ratio and Proportion.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

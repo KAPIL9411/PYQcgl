@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Compound-Interest",
   title: "Compound-Interest",
   desc: "SSC CGL PYQs focused on Compound-Interest.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

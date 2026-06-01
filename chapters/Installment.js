@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Installment",
   title: "Installment",
   desc: "SSC CGL PYQs focused on Installment.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

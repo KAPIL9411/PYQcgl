@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "mixture-alligation",
   title: "Mixture and Alligation",
   desc: "SSC CGL PYQs focused on Mixture and Alligation.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

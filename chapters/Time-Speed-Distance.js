@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Time-Speed-Distance",
   title: "Time Speed and Distance",
   desc: "SSC CGL PYQs focused on Time Speed and Distance.",
+  subject: "maths",
   questions: [
   {
     question_number: 1,

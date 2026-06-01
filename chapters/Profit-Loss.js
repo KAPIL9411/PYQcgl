@@ -3,6 +3,7 @@ window.BASE_CHAPTERS.push({
   id: "Profit-Loss",
   title: "Profit and Loss",
   desc: "SSC CGL PYQs focused on Profit and Loss.",
+  subject: "maths",
   questions: [
   {
     "question_number": 1,
