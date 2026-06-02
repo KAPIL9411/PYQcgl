@@ -754,6 +754,14 @@ function renderHome() {
       });
     }
   });
+  
+  // Setup custom mock button handler
+  const customMockBtn = document.getElementById('customMockBtn');
+  if (customMockBtn) {
+    customMockBtn.addEventListener('click', () => {
+      window.location.hash = '#/custom';
+    });
+  }
 }
 
 function currentQuestionInfo() {
