@@ -813,8 +813,37 @@ function renderPalette(chapter) {
       startCurrentQuestionTimer();
       saveProgress();
       renderPractice();
+      // Auto-collapse palette on mobile after selection
+      if (window.innerWidth <= 640 && el.palettePanel) {
+        el.palettePanel.classList.add('is-collapsed');
+      }
     });
     el.paletteList.appendChild(btn);
+  }
+}
+
+function initMobilePalette() {
+  if (!el.palettePanel) return;
+  
+  // Remove any existing listeners
+  const oldHead = el.palettePanel.querySelector('.palette__head');
+  if (oldHead) {
+    const newHead = oldHead.cloneNode(true);
+    oldHead.parentNode.replaceChild(newHead, oldHead);
+  }
+  
+  // Add mobile toggle functionality
+  const paletteHead = el.palettePanel.querySelector('.palette__head');
+  if (paletteHead && window.innerWidth <= 640) {
+    paletteHead.style.cursor = 'pointer';
+    paletteHead.addEventListener('click', () => {
+      el.palettePanel.classList.toggle('is-collapsed');
+    });
+    // Start collapsed on mobile
+    el.palettePanel.classList.add('is-collapsed');
+  } else if (paletteHead) {
+    paletteHead.style.cursor = 'default';
+    el.palettePanel.classList.remove('is-collapsed');
   }
 }
 
@@ -827,6 +856,7 @@ function renderPractice() {
 
   setView("practice");
   syncFullscreenUi();
+  initMobilePalette();
   el.practiceChapterTitle.textContent = chapter.title;
   renderTimerText();
   clearAutoNext();
@@ -923,14 +953,40 @@ function renderPractice() {
     const correctIdx = question.correct_answer_index;
     const correctKey = KEYS[correctIdx];
     const correctText = question.options[correctKey];
+    
+    // Clear feedback and rebuild with proper structure
+    el.feedback.innerHTML = '';
+    
     if (answer.isCorrect) {
       el.feedback.className = "feedback feedback--ok";
-      el.feedback.textContent = `Correct • ${correctKey}. ${correctText}`;
+      const resultText = document.createElement('div');
+      resultText.className = 'feedback__result';
+      resultText.textContent = `✓ Correct • ${correctKey}. ${correctText}`;
+      el.feedback.appendChild(resultText);
     } else {
       const pickedKey = answer.selectedIndex === null ? "—" : KEYS[answer.selectedIndex];
       el.feedback.className = "feedback feedback--bad";
-      el.feedback.textContent = `Wrong • Your: ${pickedKey} • Correct: ${correctKey}. ${correctText}`;
+      const resultText = document.createElement('div');
+      resultText.className = 'feedback__result';
+      resultText.textContent = `✗ Wrong • Your: ${pickedKey} • Correct: ${correctKey}. ${correctText}`;
+      el.feedback.appendChild(resultText);
     }
+    
+    // Add solution if available
+    if (question.solution) {
+      const solutionDiv = document.createElement('div');
+      solutionDiv.className = 'feedback__solution';
+      const solutionTitle = document.createElement('div');
+      solutionTitle.className = 'feedback__solution-title';
+      solutionTitle.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Explanation</span>`;
+      const solutionText = document.createElement('div');
+      solutionText.className = 'feedback__solution-text';
+      solutionText.textContent = question.solution;
+      solutionDiv.appendChild(solutionTitle);
+      solutionDiv.appendChild(solutionText);
+      el.feedback.appendChild(solutionDiv);
+    }
+    
     el.feedback.hidden = false;
   } else {
     el.feedback.hidden = true;
@@ -1410,6 +1466,11 @@ function handleRoute() {
 refreshChapters();
 attachHandlers();
 window.addEventListener("hashchange", handleRoute);
+window.addEventListener("resize", () => {
+  if (appState.view === "practice") {
+    initMobilePalette();
+  }
+});
 handleRoute();
 
 
