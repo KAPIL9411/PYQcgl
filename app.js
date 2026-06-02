@@ -10,7 +10,8 @@ const PROGRESS_VERSION = 1;
 const appState = {
   view: "home",
   chapterId: null,
-  mode: "full",
+  mode: "full", // "full", "custom", "retryWrong"
+  isExamMode: false, // true for exam mode (no instant feedback), false for practice mode
   order: [],
   idx: 0,
   answers: [],
@@ -483,6 +484,7 @@ function makeNewSession(chapterId, order, mode) {
   const total = chapter ? order.length : 0;
   appState.chapterId = chapterId;
   appState.mode = mode;
+  appState.isExamMode = (mode === "custom"); // Custom mocks are exam mode
   if (mode !== "custom") {
     appState.timeLimitMs = null;
     appState.sessionChapter = null;
@@ -536,9 +538,7 @@ function startTimer() {
       }
       saveProgress();
     }
-    if (appState.view === "results") {
-      el.timeValue.textContent = formatDuration(appState.elapsedMs);
-    }
+    // Don't update time in results view - show final time only
   }, 250);
 }
 
@@ -775,6 +775,15 @@ function clearAutoNext() {
 function paletteStateFor(answer) {
   if (!answer.visited) return "nv";
   if (answer.marked) return "mr";
+  
+  // In exam mode, show different states
+  if (appState.isExamMode) {
+    // Just show if answered or not
+    if (answer.selectedIndex !== null) return "ans";
+    return "na";
+  }
+  
+  // Practice mode: show correct/wrong
   if (answer.isSubmitted && answer.selectedIndex !== null) {
     return answer.isCorrect ? "ans" : "ans-bad"; 
   }
@@ -783,6 +792,51 @@ function paletteStateFor(answer) {
 
 function renderPalette(chapter) {
   if (!el.paletteList) return;
+  
+  // Update legend based on mode
+  const legendEl = document.querySelector('.legend');
+  if (legendEl) {
+    if (appState.isExamMode) {
+      legendEl.innerHTML = `
+        <div class="legend__item">
+          <div class="dot"></div>
+          <span>Not Visited</span>
+        </div>
+        <div class="legend__item">
+          <div class="dot dot--na"></div>
+          <span>Not Answered</span>
+        </div>
+        <div class="legend__item">
+          <div class="dot dot--ans"></div>
+          <span>Answered</span>
+        </div>
+      `;
+    } else {
+      legendEl.innerHTML = `
+        <div class="legend__item">
+          <div class="dot"></div>
+          <span>Not Visited</span>
+        </div>
+        <div class="legend__item">
+          <div class="dot dot--na"></div>
+          <span>Not Answered</span>
+        </div>
+        <div class="legend__item">
+          <div class="dot dot--ans"></div>
+          <span>Correct</span>
+        </div>
+        <div class="legend__item">
+          <div class="dot dot--na"></div>
+          <span>Wrong</span>
+        </div>
+        <div class="legend__item">
+          <div class="dot dot--mr"></div>
+          <span>Marked</span>
+        </div>
+      `;
+    }
+  }
+  
   el.paletteList.innerHTML = "";
   for (let i = 0; i < appState.order.length; i += 1) {
     const globalIndex = appState.order[i];
@@ -857,7 +911,14 @@ function renderPractice() {
   setView("practice");
   syncFullscreenUi();
   initMobilePalette();
-  el.practiceChapterTitle.textContent = chapter.title;
+  
+  // Show mode indicator
+  if (appState.isExamMode) {
+    el.practiceChapterTitle.innerHTML = `${chapter.title} <span style="background: #667eea; color: white; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin-left: 8px; font-weight: 600;">EXAM MODE</span>`;
+  } else {
+    el.practiceChapterTitle.textContent = chapter.title;
+  }
+  
   renderTimerText();
   clearAutoNext();
 
@@ -912,10 +973,18 @@ function renderPractice() {
     }
   }
 
-  const answeredCount = appState.answers.filter((a) => a.isSubmitted && a.selectedIndex !== null).length;
+  const answeredCount = appState.answers.filter((a) => a.selectedIndex !== null).length;
   const markedCount = appState.answers.filter((a) => a.marked).length;
-  const notAnsweredCount = appState.answers.filter((a) => a.visited && !(a.isSubmitted && a.selectedIndex !== null) && !a.marked).length;
-  el.progressMeta.textContent = `${pos}/${total}  Answered ${answeredCount}  Marked ${markedCount}  Not Answered ${notAnsweredCount}`;
+  
+  // In exam mode, show different labels
+  if (appState.isExamMode) {
+    const notAnsweredCount = total - answeredCount;
+    el.progressMeta.textContent = `${pos}/${total} • Answered ${answeredCount} • Not Answered ${notAnsweredCount}`;
+  } else {
+    const submittedCount = appState.answers.filter((a) => a.isSubmitted && a.selectedIndex !== null).length;
+    const notAnsweredCount = appState.answers.filter((a) => a.visited && !(a.isSubmitted && a.selectedIndex !== null) && !a.marked).length;
+    el.progressMeta.textContent = `${pos}/${total} • Answered ${submittedCount} • Marked ${markedCount} • Not Answered ${notAnsweredCount}`;
+  }
 
   el.options.innerHTML = "";
   const optionTexts = KEYS.map((k) => question.options[k]);
@@ -937,19 +1006,27 @@ function renderPractice() {
     btn.appendChild(radio);
     btn.appendChild(text);
 
-    if (answer.isSubmitted) {
-      const correctIdx = question.correct_answer_index;
-      if (i === correctIdx) btn.classList.add("is-correct");
-      if (answer.selectedIndex === i && answer.selectedIndex !== correctIdx) btn.classList.add("is-wrong");
-      btn.disabled = true;
+    // In exam mode, don't show feedback and don't disable options
+    if (appState.isExamMode) {
+      // Just allow selection, no instant feedback
+      btn.addEventListener("click", () => pickOption(i));
     } else {
-      btn.addEventListener("click", () => submitInstant(i));
+      // Practice mode: show instant feedback
+      if (answer.isSubmitted) {
+        const correctIdx = question.correct_answer_index;
+        if (i === correctIdx) btn.classList.add("is-correct");
+        if (answer.selectedIndex === i && answer.selectedIndex !== correctIdx) btn.classList.add("is-wrong");
+        btn.disabled = true;
+      } else {
+        btn.addEventListener("click", () => submitInstant(i));
+      }
     }
 
     el.options.appendChild(btn);
   }
 
-  if (answer.isSubmitted) {
+  // Show feedback only in practice mode and when submitted
+  if (!appState.isExamMode && answer.isSubmitted) {
     const correctIdx = question.correct_answer_index;
     const correctKey = KEYS[correctIdx];
     const correctText = question.options[correctKey];
@@ -993,6 +1070,23 @@ function renderPractice() {
   }
 
   el.prevBtn.disabled = appState.idx === 0;
+  
+  // Update UI elements based on mode
+  if (el.clearBtn) {
+    el.clearBtn.style.display = appState.isExamMode ? 'none' : 'inline-flex';
+  }
+  
+  // Update finish button text based on mode
+  if (el.finishBtn) {
+    if (appState.isExamMode) {
+      el.finishBtn.textContent = "Submit Test";
+      el.finishBtn.className = "btn btn--danger";
+    } else {
+      el.finishBtn.textContent = "Finish";
+      el.finishBtn.className = "btn btn--soft";
+    }
+  }
+  
   renderPalette(chapter);
 }
 
@@ -1000,13 +1094,23 @@ function pickOption(idx) {
   const info = currentQuestionInfo();
   if (!info) return;
 
-  info.answer.selectedIndex = idx;
-  info.answer.startedAt = info.answer.startedAt || Date.now();
+  // In exam mode, just record the selection without submitting
+  if (appState.isExamMode) {
+    info.answer.selectedIndex = idx;
+    info.answer.visited = true;
+    info.answer.startedAt = info.answer.startedAt || Date.now();
+    saveProgress();
+    renderPractice();
+  } else {
+    // In practice mode, behave as before (for any legacy code paths)
+    info.answer.selectedIndex = idx;
+    info.answer.startedAt = info.answer.startedAt || Date.now();
 
-  const buttons = Array.from(el.options.querySelectorAll(".opt"));
-  for (const b of buttons) {
-    const i = Number(b.dataset.idx);
-    b.setAttribute("aria-pressed", i === idx ? "true" : "false");
+    const buttons = Array.from(el.options.querySelectorAll(".opt"));
+    for (const b of buttons) {
+      const i = Number(b.dataset.idx);
+      b.setAttribute("aria-pressed", i === idx ? "true" : "false");
+    }
   }
 }
 
@@ -1068,7 +1172,45 @@ function goNext() {
 }
 
 function finishSession() {
+  // In exam mode, show confirmation with unanswered count
+  if (appState.isExamMode) {
+    const total = appState.order.length;
+    const answered = appState.answers.filter((a) => a.selectedIndex !== null).length;
+    const unanswered = total - answered;
+    
+    let message = `Are you sure you want to submit the test?`;
+    if (unanswered > 0) {
+      message = `You have ${unanswered} unanswered question${unanswered > 1 ? 's' : ''}. Are you sure you want to submit?`;
+    }
+    
+    if (!window.confirm(message)) {
+      return;
+    }
+  }
+  
   pauseCurrentQuestionTimer();
+  
+  // In exam mode, evaluate all answers before showing results
+  if (appState.isExamMode) {
+    const chapter = chapterById(appState.chapterId);
+    if (chapter) {
+      for (let i = 0; i < appState.order.length; i += 1) {
+        const globalIndex = appState.order[i];
+        const q = chapter.questions[globalIndex];
+        const a = appState.answers[i];
+        
+        // Mark as submitted and evaluate correctness for ALL questions
+        // Even unattempted ones need to be marked as submitted
+        a.isSubmitted = true;
+        if (a.selectedIndex !== null) {
+          a.isCorrect = a.selectedIndex === q.correct_answer_index;
+        } else {
+          a.isCorrect = false;
+        }
+      }
+    }
+  }
+  
   saveProgress();
   window.location.hash = `#/results?chapter=${encodeURIComponent(appState.chapterId)}`;
 }
@@ -1120,6 +1262,10 @@ function renderResults() {
   }
 
   setView("results");
+  
+  // Stop timer and save final time
+  stopTimer();
+  
   el.resultsChapterTitle.textContent = chapter.title;
 
   const summary = computeSummary();
@@ -1128,12 +1274,21 @@ function renderResults() {
   updateBest(appState.chapterId, summary);
 
   el.scoreValue.textContent = `${summary.correct}/${summary.total}`;
-  el.scoreSub.textContent = summary.mode === "retryWrong" ? "Retry session score" : "Full session score";
+  
+  if (appState.isExamMode) {
+    el.scoreSub.textContent = "Exam Score";
+  } else {
+    el.scoreSub.textContent = summary.mode === "retryWrong" ? "Retry session score" : "Practice Score";
+  }
+  
   el.accValue.textContent = `${Math.round(summary.accuracy)}%`;
+  
+  // Set final time once and don't let timer update it
   el.timeValue.textContent = formatDuration(summary.elapsedMs);
+  
   el.attemptedValue.textContent = `${summary.attempted}/${summary.total}`;
 
-  el.reviewMeta.textContent = "Click any card to jump to that question";
+  el.reviewMeta.textContent = "Click any card to view solution";
   el.reviewList.innerHTML = "";
 
   for (let i = 0; i < appState.order.length; i += 1) {
@@ -1156,10 +1311,12 @@ function renderResults() {
 
     const st = document.createElement("div");
     st.className = "chip__s";
-    if (!a.isSubmitted || a.selectedIndex === null) {
+    
+    // Check if question was attempted (has a selected answer)
+    if (a.selectedIndex === null) {
       st.classList.add("na");
       st.textContent = "Unattempted";
-    } else if (a.selectedIndex === q.correct_answer_index) {
+    } else if (a.isCorrect) {
       st.classList.add("ok");
       st.textContent = "Correct";
     } else {
@@ -1177,19 +1334,182 @@ function renderResults() {
     chip.appendChild(top);
     chip.appendChild(t);
 
-    const jump = () => {
-      window.location.hash = `#/practice?chapter=${encodeURIComponent(chapter.id)}&pos=${encodeURIComponent(String(i))}`;
-    };
-    chip.addEventListener("click", jump);
-    chip.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        jump();
-      }
-    });
+    // Add click handler to show solution modal
+    (function(idx, gIdx, question, ans) {
+      const showSolution = () => {
+        showQuestionSolutionModal(idx, gIdx, question, ans, chapter);
+      };
+      chip.addEventListener("click", showSolution);
+      chip.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          showSolution();
+        }
+      });
+    })(i, globalIndex, q, a);
 
     el.reviewList.appendChild(chip);
   }
+}
+
+function showQuestionSolutionModal(index, globalIndex, question, answer, chapter) {
+  // Remove any existing modal first
+  const existingModals = document.querySelectorAll('.modal-overlay');
+  existingModals.forEach(modal => {
+    if (modal.parentNode) {
+      modal.parentNode.removeChild(modal);
+    }
+  });
+  
+  // Create modal overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  
+  // Create modal content
+  const modal = document.createElement('div');
+  modal.className = 'modal-content';
+  
+  // Modal header
+  const header = document.createElement('div');
+  header.className = 'modal-header';
+  
+  const title = document.createElement('h3');
+  title.textContent = `Question ${question.question_number}`;
+  if (question.year) {
+    title.textContent += ` (${question.year})`;
+  }
+  
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'modal-close';
+  closeBtn.innerHTML = '×';
+  closeBtn.setAttribute('aria-label', 'Close modal');
+  
+  header.appendChild(title);
+  header.appendChild(closeBtn);
+  modal.appendChild(header);
+  
+  // Question text
+  const questionText = document.createElement('div');
+  questionText.className = 'modal-question';
+  questionText.textContent = question.text;
+  modal.appendChild(questionText);
+  
+  // Options
+  const optionsDiv = document.createElement('div');
+  optionsDiv.className = 'modal-options';
+  
+  const correctIdx = question.correct_answer_index;
+  
+  for (let i = 0; i < 4; i++) {
+    const optDiv = document.createElement('div');
+    optDiv.className = 'modal-option';
+    
+    if (i === correctIdx) {
+      optDiv.classList.add('is-correct');
+    }
+    if (answer.selectedIndex === i && i !== correctIdx) {
+      optDiv.classList.add('is-wrong');
+    }
+    
+    const optLabel = document.createElement('div');
+    optLabel.className = 'modal-option-label';
+    optLabel.textContent = KEYS[i];
+    
+    const optText = document.createElement('div');
+    optText.className = 'modal-option-text';
+    optText.textContent = question.options[KEYS[i]];
+    
+    optDiv.appendChild(optLabel);
+    optDiv.appendChild(optText);
+    optionsDiv.appendChild(optDiv);
+  }
+  
+  modal.appendChild(optionsDiv);
+  
+  // Status
+  const statusDiv = document.createElement('div');
+  statusDiv.className = 'modal-status';
+  
+  if (answer.selectedIndex === null) {
+    statusDiv.innerHTML = '<span class="status-badge status-unattempted">⚠️ Unattempted</span>';
+    statusDiv.innerHTML += `<span class="status-info">Correct Answer: <strong>${KEYS[correctIdx]}</strong></span>`;
+  } else if (answer.isCorrect) {
+    statusDiv.innerHTML = '<span class="status-badge status-correct">✓ Correct</span>';
+    statusDiv.innerHTML += `<span class="status-info">Your Answer: <strong>${KEYS[answer.selectedIndex]}</strong></span>`;
+  } else {
+    statusDiv.innerHTML = '<span class="status-badge status-wrong">✗ Wrong</span>';
+    statusDiv.innerHTML += `<span class="status-info">Your Answer: <strong>${KEYS[answer.selectedIndex]}</strong> • Correct: <strong>${KEYS[correctIdx]}</strong></span>`;
+  }
+  
+  modal.appendChild(statusDiv);
+  
+  // Solution
+  if (question.solution) {
+    const solutionDiv = document.createElement('div');
+    solutionDiv.className = 'modal-solution';
+    
+    const solutionTitle = document.createElement('div');
+    solutionTitle.className = 'modal-solution-title';
+    solutionTitle.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Solution & Explanation</span>
+    `;
+    
+    const solutionText = document.createElement('div');
+    solutionText.className = 'modal-solution-text';
+    solutionText.textContent = question.solution;
+    
+    solutionDiv.appendChild(solutionTitle);
+    solutionDiv.appendChild(solutionText);
+    modal.appendChild(solutionDiv);
+  }
+  
+  // Footer
+  const footer = document.createElement('div');
+  footer.className = 'modal-footer';
+  
+  const backBtn = document.createElement('button');
+  backBtn.className = 'btn btn--secondary';
+  backBtn.textContent = 'Close';
+  
+  footer.appendChild(backBtn);
+  modal.appendChild(footer);
+  
+  overlay.appendChild(modal);
+  
+  // Close modal function
+  const closeModal = () => {
+    const modalToRemove = document.querySelector('.modal-overlay');
+    if (modalToRemove && modalToRemove.parentNode) {
+      document.body.removeChild(modalToRemove);
+    }
+    document.removeEventListener('keydown', handleEscape);
+  };
+  
+  // Attach close handlers
+  closeBtn.onclick = closeModal;
+  backBtn.onclick = closeModal;
+  
+  // Close on overlay click
+  overlay.onclick = (e) => {
+    if (e.target === overlay) {
+      closeModal();
+    }
+  };
+  
+  // Close on Escape key
+  const handleEscape = (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  };
+  document.addEventListener('keydown', handleEscape);
+  
+  document.body.appendChild(overlay);
 }
 
 function retryWrong() {
@@ -1453,9 +1773,16 @@ function handleRoute() {
 
   if (route === "results") {
     const chapterId = params.chapter || appState.chapterId || "percentage";
+    
+    // Don't call ensureSessionForChapter - it would overwrite our exam results!
+    // The session data is already in appState from the test just taken
+    if (!appState.chapterId) {
+      // Only if there's no active session, redirect to home
+      window.location.hash = "#/home";
+      return;
+    }
+    
     pauseCurrentQuestionTimer();
-    saveProgress();
-    ensureSessionForChapter(chapterId);
     renderResults();
     return;
   }

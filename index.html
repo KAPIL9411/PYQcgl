@@ -75,7 +75,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
             </svg>
-            <span>100% Free • Authentic PYQs</span>
+            <span>100% Free • Authentic & Latest PYQs</span>
           </div>
           <h1 class="home-hero__title">Master SSC CGL with<br/>Previous Year Questions</h1>
           <p class="home-hero__desc">Practice chapter-wise or create custom mock tests. Track your progress and improve your score.</p>
@@ -371,47 +371,100 @@
       </section>
 
       <section class="view" data-view="results" aria-label="Results" hidden>
-        <div class="results">
-          <div class="results__head">
-            <div class="crumbs">
-              <a class="crumbs__link" href="#/home">Chapters</a>
-              <span class="crumbs__sep" aria-hidden="true">/</span>
-              <span class="crumbs__current" id="resultsChapterTitle"></span>
+        <div class="results-container">
+          <div class="results-header">
+            <div class="results-header__left">
+              <a class="results-back-link" href="#/home">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Back to Home</span>
+              </a>
+              <h2 class="results-title" id="resultsChapterTitle"></h2>
             </div>
-            <div class="results__cta">
-              <button class="btn btn--ghost" id="reviewBtn" type="button">Review</button>
-              <button class="btn btn--primary" id="retryWrongBtn" type="button">Retry Wrong</button>
-            </div>
-          </div>
-
-          <div class="summary">
-            <div class="kpi">
-              <div class="kpi__k">Score</div>
-              <div class="kpi__v" id="scoreValue"></div>
-              <div class="kpi__s" id="scoreSub"></div>
-            </div>
-            <div class="kpis">
-              <div class="kpi kpi--small">
-                <div class="kpi__k">Accuracy</div>
-                <div class="kpi__v" id="accValue"></div>
-              </div>
-              <div class="kpi kpi--small">
-                <div class="kpi__k">Time</div>
-                <div class="kpi__v" id="timeValue"></div>
-              </div>
-              <div class="kpi kpi--small">
-                <div class="kpi__k">Attempted</div>
-                <div class="kpi__v" id="attemptedValue"></div>
-              </div>
+            <div class="results-header__actions">
+              <button class="btn btn--secondary" id="reviewBtn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Review Answers
+              </button>
+              <button class="btn btn--primary" id="retryWrongBtn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 2v6h-6M3 22v-6h6M21 8l-5 5M8 11l-5 5M9 3a9 9 0 0 1 12 12M3 12a9 9 0 0 1 12-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Retry Wrong
+              </button>
             </div>
           </div>
 
-          <div class="panel">
-            <div class="panel__head">
-              <div class="panel__title">Question Review</div>
-              <div class="panel__meta" id="reviewMeta"></div>
+          <div class="results-stats">
+            <div class="stat-card stat-card--primary">
+              <div class="stat-card__icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M22 4L12 14.01l-3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="stat-card__content">
+                <div class="stat-card__label">Score</div>
+                <div class="stat-card__value" id="scoreValue"></div>
+                <div class="stat-card__sub" id="scoreSub"></div>
+              </div>
             </div>
-            <div class="review" id="reviewList"></div>
+
+            <div class="stat-card">
+              <div class="stat-card__icon stat-card__icon--accuracy">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="stat-card__content">
+                <div class="stat-card__label">Accuracy</div>
+                <div class="stat-card__value" id="accValue"></div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card__icon stat-card__icon--time">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="stat-card__content">
+                <div class="stat-card__label">Time Taken</div>
+                <div class="stat-card__value" id="timeValue"></div>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card__icon stat-card__icon--attempted">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="stat-card__content">
+                <div class="stat-card__label">Attempted</div>
+                <div class="stat-card__value" id="attemptedValue"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="results-breakdown">
+            <div class="breakdown-header">
+              <h3 class="breakdown-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Question Analysis
+              </h3>
+              <div class="breakdown-meta" id="reviewMeta">Click any card to review that question</div>
+            </div>
+
+            <div class="question-grid" id="reviewList"></div>
           </div>
         </div>
       </section>
