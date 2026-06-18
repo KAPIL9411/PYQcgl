@@ -1795,9 +1795,6 @@ function handleRoute() {
     return;
   }
 
-  // Admin route is handled by messaging.js — don't redirect away
-  if (route === "admin") return;
-
   window.location.hash = "#/home";
 }
 
